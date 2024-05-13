@@ -1,1 +1,1 @@
- web: python run.py
+ web: gunicorn forge_focus.wsgi
