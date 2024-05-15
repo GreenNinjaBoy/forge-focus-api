@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'cloudinary',
 
     'profiles',
+    'refine',
 ]
 
 MIDDLEWARE = [
