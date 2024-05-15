@@ -12,7 +12,7 @@ class Refine(models.Model):
         related_name="focus")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_lenght=50)
+    name = models.CharField(max_length=50)
     rank = models.IntegerField(blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
     image = models.ImageField(
