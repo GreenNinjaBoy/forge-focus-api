@@ -15,6 +15,9 @@ class Refine(models.Model):
     name = models.CharField(max_lenght=50)
     rank = models.IntegerField(blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
+    image = models.ImageField(
+        upload_to='images/', default='../default-designer_cae82s', blank=True
+    )
 
 
     class Meta:
