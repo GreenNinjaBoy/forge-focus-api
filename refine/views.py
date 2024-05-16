@@ -26,5 +26,11 @@ class RefineList(generics.ListCreateAPIView):
         """
         return self.request.user.focus.all().order_by('rank', 'created_at')
 
-
-
+class RefineDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+    This view will return a specific refine where 
+    pk will be the ID of the refine.
+    """
+    serializer_class = FocusSerializer
+    permission_classes = [OwnerOnly]
+    queryset = Refine.objects.all()
