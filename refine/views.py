@@ -1,4 +1,4 @@
-from forge_focus_api.permissions import OwnerOnly
+from forge_focus.permissions import OwnerOnly
 from .serializers import RefineSerializer
 from .models import Refine
 from rest_framework import generics
@@ -11,7 +11,7 @@ class RefineList(generics.ListCreateAPIView):
     """
     serializer_class = RefineSerializer
 
-    def refinement_create(self, serializer):
+    def perform_create(self, serializer):
         """
         This will add the owner data to the refine object
         before it is saved.
@@ -31,6 +31,6 @@ class RefineDetails(generics.RetrieveUpdateDestroyAPIView):
     This view will return a specific refine where 
     pk will be the ID of the refine.
     """
-    serializer_class = FocusSerializer
+    serializer_class = RefineSerializer
     permission_classes = [OwnerOnly]
     queryset = Refine.objects.all()
