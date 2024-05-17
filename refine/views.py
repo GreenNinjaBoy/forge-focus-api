@@ -24,7 +24,10 @@ class RefineList(generics.ListCreateAPIView):
         to the current user. Within this order will be rank first 
         (with null last), and then created_at.
         """
-        return self.request.user.focus.all().order_by('rank', 'created_at')
+        if self.request.user.is_authenticated:
+            return self.request.user.refine.all().order_by('rank', 'created_at')
+        else:
+            return Refine.objects.none()  # This will return an empty queryset
 
 class RefineDetails(generics.RetrieveUpdateDestroyAPIView):
     """
