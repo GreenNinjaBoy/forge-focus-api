@@ -46,5 +46,12 @@ class RefineListViewsTests(APITestCase):
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_refine_no_name_display_error(self):
+        """
+        When a user sends out a post request
+        without submitting a name attached a
+        400 error should display.
+        """
+        
 
 
