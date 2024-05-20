@@ -107,3 +107,16 @@ class RefineDetailViewTests(APITestCase):
             owner='Tester2', Name='Tester2 Name', reason='Tester2 Purposes'
         )
 
+    def test_logged_in_can_get_refine_detail(self):
+        """
+        This test is to see when a user makes a 
+        get request for a refine object they own
+        that object should be returned to them
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        response = self.client.get('/refine/1')
+        refine =  response.data
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(refine['owner'], 'Tester1')
+        self.assertEqual(refine)['name', 'Name']
+
