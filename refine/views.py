@@ -1,7 +1,7 @@
 from forge_focus.permissions import OwnerOnly
 from .serializers import RefineSerializer
 from .models import Refine
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 
 class RefineList(generics.ListCreateAPIView):
@@ -10,6 +10,7 @@ class RefineList(generics.ListCreateAPIView):
      logged in user, will also a new area for refinement.
     """
     serializer_class = RefineSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         """
