@@ -120,3 +120,14 @@ class RefineDetailViewTests(APITestCase):
         self.assertEqual(refine['owner'], 'Tester1')
         self.assertEqual(refine)['name', 'Name']
 
+    def test_logged_out_no_access_refine_detail(self):
+        """
+        A user who is not logged in trying to send a
+        get request for a refine object should return
+        access denied
+        """
+
+        response = self.client.get('/refine/1')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    
