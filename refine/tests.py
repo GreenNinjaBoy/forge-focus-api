@@ -130,4 +130,15 @@ class RefineDetailViewTests(APITestCase):
         response = self.client.get('/refine/1')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_invalid_refine_request_handle(self):
+        """
+        A logged in user who is attempting to 
+        send a get request for a refine object
+        that does not exist should return a 
+        404 not found message
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        response = self.client.get('/focus/3')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
     
