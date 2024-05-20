@@ -88,5 +88,22 @@ class RefineListViewsTests(APITestCase):
         self.assertEqual(refineOwner, 'Tester1')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
+class RefineDetailViewTests(APITestCase):
+    """
+    This is the tests created for the
+    Refine detail view
+    """
+    def setup(self):
+        FirstTester = User.objects.create_user(
+            username='Tester1', password='Tester1'
+        )
+        Refine.objects.create(
+            owner='Tester1', name='Tester1 Name', reason='Tester1 Purposes'
+        )
+        SecondTester = User.objects.create_user(
+            username='Tester2', password='Tester2'
+        )
+        Refine.objects.create(
+            owner='Tester2', Name='Tester2 Name', reason='Tester2 Purposes'
+        )
 
