@@ -152,4 +152,17 @@ class RefineDetailViewTests(APITestCase):
         response = self.client.get('/refine/2')
         self.assertEqual(response.status_code, ststus.HTTP_403_FORBIDDEN)
 
+    def test_owner_can_edit_refine_object(self):
+        """
+        When a logged in user is the owner of 
+        a refine object and they make a 'put' request
+        this should return ok and allow the owner to 
+        make changes.
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        response = self.client.put('/refine/1', {'name': 'name change for test',})
+        refine = response.data
+        self.assertEqual(refine['name'], 'name changed')
+        self. assertEqual(response.status_code, status.HTTP_200_OK)
+    
     
