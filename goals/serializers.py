@@ -19,21 +19,56 @@ class UserGoalsSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
 
     def get_time_remaining(self, obj):
-        """
-        This function will generate a new field
-        containing the time remaining until the 
-        user reaches their deadline
-        """
         future_deadline = obj.deadline
         if future_deadline:
             today_naive = datetime.now()
             today_aware = today_naive.replace(tzinfo=timezone.utc)
-            time_remaining = future_deadline - today_aware
-            days, seconds = time_remaining.days, time_remaining.seconds
-            hours = seconds // 3600
-            minutes = (seconds % 3600) // 60
-            return f"{days} days, {hours} hours, {minutes} minutes"
+            return (future_deadline - today_aware).total_seconds()
         else:
             return None
+            
+    def get_deadline_near(self, obj):
+        """
+        This will generate two new fields
+        for the user if their deadline time is 
+        between 50%-25% and below 25%
+        """
+        time_remaining = self.get_time_remaining(obj)
+        deadline_near_mid = False
+        deadline_near_low = False
 
-    
+        if time_remaining is not None:
+            total_time = (obj.deadline - obj.created_at).total_seconds()
+            proportion_remaining = time_remaining / total_time
+
+            if 0.50 <= proportion_remaining <= 0.25:
+                deadline_near_mid = True
+            if proportion_remaining < 0.25:
+                deadline_near_low = True
+
+        return {
+            'deadline_near_mid': deadline_near_mid,
+            'deadline_near_low': deadline_near_low,
+        }
+
+    class Meta :
+        model = UserGoals
+        fields = [
+            'id',
+            'owner',
+            'is_owner',
+            'refine',
+            'children',
+            'parent',
+            'created_at',
+            'updated_at',
+            'active',
+            'achieve_by',
+            'goal_title',
+            'goal_details',
+            'criteria',
+            'deadline_near',
+            'deadline_near_mid',
+            'deadline_near_low',
+            'time_remaining'
+        ]
