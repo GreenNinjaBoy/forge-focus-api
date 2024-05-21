@@ -165,4 +165,16 @@ class RefineDetailViewTests(APITestCase):
         self.assertEqual(refine['name'], 'name changed')
         self. assertEqual(response.status_code, status.HTTP_200_OK)
     
+    def test_owner_can_delete_refine_object(self):
+        """
+        When the owner makes a delete request 
+        for a refine object they own should 
+        return ok and delete the requested object
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        response = self.client.delete('/refine/1')
+        count = refine.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
     
