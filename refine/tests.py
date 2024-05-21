@@ -141,4 +141,15 @@ class RefineDetailViewTests(APITestCase):
         response = self.client.get('/focus/3')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
+    def test_denied_logged_inget_refine_not_owner(self):
+        """
+        This test is for when a logged in user is
+        trying to access a refine object that
+        they are not the owner off they should
+        be returned with an access denied.
+        """
+        sell.client.login(username='Tester1', password='Tester1')
+        response = self.client.get('/refine/2')
+        self.assertEqual(response.status_code, ststus.HTTP_403_FORBIDDEN)
+
     
