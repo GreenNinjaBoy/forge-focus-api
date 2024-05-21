@@ -13,7 +13,7 @@ class Refine(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=50)
-    rank = models.IntegerField(blank=True, null=True)
+    priority = models.IntegerField(blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
     image = models.ImageField(
         upload_to='images/', default='../default-designer_cae82s', blank=True

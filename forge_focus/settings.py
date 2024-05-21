@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
                 'localhost',
                 '127.0.0.1',
                 '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',
+                '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
                 '.herokuapp.com',
                 ]
 

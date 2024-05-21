@@ -44,7 +44,7 @@ class RefineSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at',
             'name',
-            'rank',
+            'priority',
             'reason',
             'image',
             'is_owner'
