@@ -177,4 +177,13 @@ class RefineDetailViewTests(APITestCase):
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    
+    def test_user_denied_delete_refine_object_not_own(self):
+        """
+        When a user tries to make a delete
+        request for refine object they do not 
+        own then should return access denied 
+        message.
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        respone = self.client.delete('/refine/2')
+        self.assertEqual(respone.status_code, status.HTTP_403_FORBIDDEN)
