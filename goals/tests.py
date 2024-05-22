@@ -19,6 +19,7 @@ class UserGoalListViewTests(APITestCase):
         and only the second user will 
         have one object.
         """
+        UserGoals.objects.all().delete()
         first_tester = User.objects.create_user(
             username='Tester1', password='Tester1'
         )
@@ -35,8 +36,35 @@ class UserGoalListViewTests(APITestCase):
             name="Tester2 refine object", 
             reason="goals testing"
         )
-        UserGoals.object.create(
+        UserGoals.objects.create(
             owner=second_tester,
             goal_title ='Tester2 created goal',
             refine=second_tester_refine
         )
+    
+    def test_logged_out_create_goal_denied(self):
+        """
+        A user who is not logged in attempts a
+        post request should be returned with an 
+        403 error message
+        """
+        response = self.client.post(
+            '/goals/', {"goal_title": "title", "refine": Refine.id}
+        )
+        count = UserGoals.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_logged_in_create_goal_granted(self):
+        """
+        A user who is logged in attempts a post
+        request should be returned with an 201
+        message and goal created
+        """
+        self.client.login(username="Teater1", password="Tester1")
+        response = self.client.post(
+            '/goals/', {"goals_title": "Tester1 Goal Title", "refine": Refine.id}
+        )
+        count = UserGoals.objects.count()
+        self.assertEqual(count, 2)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)

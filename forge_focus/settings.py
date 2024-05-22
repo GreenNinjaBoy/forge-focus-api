@@ -37,6 +37,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
+                'testserver',
                 'localhost',
                 '127.0.0.1',
                 '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',

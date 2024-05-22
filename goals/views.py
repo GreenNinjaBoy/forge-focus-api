@@ -1,4 +1,5 @@
 from forge_focus.permissions import OwnerOnly
+from rest_framework.permissions import IsAuthenticated
 from .models import UserGoals
 from .serializers import UserGoalsSerializer
 from rest_framework import generics, filters
@@ -29,6 +30,7 @@ class UserGoalList(generics.ListCreateAPIView):
     and also allow that user to create new 
     goals 
     """
+    permission_classes = [IsAuthenticated]
     serializer_class = UserGoalsSerializer
     filter_backends = [
         FilterList
@@ -47,7 +49,10 @@ class UserGoalList(generics.ListCreateAPIView):
         to the currently logged in user. This will be in 
         order of rank and then by created_at
         """
-        return self.request.user.usergoals.all().order_by('achieve_by','created_at')
+        if self.request.user.is_authenticated:
+            return self.request.user.usergoals.all().order_by('achieve_by','created_at')
+        else:
+            return UserGoals.objects.none()
 
 class UserGoalDetails(generics.RetrieveUpdateDestroyAPIView):
     """
