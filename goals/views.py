@@ -34,7 +34,7 @@ class UserGoalList(generics.ListCreateAPIView):
         FilterList
     ]
 
-    def create_goal(self, serializer):
+    def perform_create(self, serializer):
         """
         This will add the owner data to
         the objectg before it is saved 

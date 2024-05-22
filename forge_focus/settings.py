@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 
     'profiles',
     'refine',
+    'goals',
 ]
 
 MIDDLEWARE = [
