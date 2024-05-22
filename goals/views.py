@@ -49,5 +49,12 @@ class UserGoalList(generics.ListCreateAPIView):
         """
         return self.request.user.usergoals.all().order_by('achieve_by','created_at')
 
-
+class UserGoalDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View to return a specific user goal where the
+    pk will be the id of the user goal
+    """
+    serializer_class = UserGoalsSerializer
+    permission_classes = [OwnerOnly]
+    queryset = UserGoals.objects.all()
 
