@@ -22,5 +22,32 @@ class FilterList(filters.BaseFilterBackend):
             queryset = queryset.filter(parent=None)
         return queryset
 
+class UserGoalList(generics.ListCreateAPIView):
+    """
+    This view will return to a logged in user
+    a list of goals that they have created 
+    and also allow that user to create new 
+    goals 
+    """
+    serializer_class = UserGoalsSerializer
+    filter_backends = [
+        FilterList
+    ]
+
+    def create_goal(self, serializer):
+        """
+        This will add the owner data to
+        the objectg before it is saved 
+        """
+        serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        """
+        Pulls all of the goal instances that are linked
+        to the currently logged in user. This will be in 
+        order of rank and then by created_at
+        """
+        return self.request.user.usergoals.all().order_by('achieve_by','created_at')
+
 
 
