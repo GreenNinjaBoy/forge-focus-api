@@ -90,4 +90,24 @@ class UserGoalListViewTests(APITestCase):
         403 FORBIDDEN message
         """
         response = self.client.get('/goals/')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)    
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_logged_in_view_own_goals_only(self):
+        """
+        When a logged in user makes a
+        get request they are only returned
+        with their own goals
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        self.client.post('/goals/', {"goal_title": "Test Title", "refine": 1})
+        response = self.client.get('/goals/')
+        number_goals_returned = len(response.data) 
+        number_goals = UserGoals.objects.count()
+        first_goal = response.data[0]
+        goal_owner = first_goal['owner']
+        self.assertEqual(number_goals, 1)
+        self.assertEqual(number_goals_returned, 1)
+        self.assertEqual(goal_owner, 'Tester1')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
