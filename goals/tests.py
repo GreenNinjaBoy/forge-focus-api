@@ -68,3 +68,18 @@ class UserGoalListViewTests(APITestCase):
         count = UserGoals.objects.count()
         self.assertEqual(count, 2)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_goal_create_no_title_display_error(self):
+        """
+        When a logged in user attempts a post
+        request without inserting the name data
+        should return a 400 error
+        """
+        self.client.login(username='Tester1', password='Tester1')
+        response = self.client.post(
+            '/goals/', {"refine": 1}
+        )
+        count = UserGoals.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
