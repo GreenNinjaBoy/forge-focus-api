@@ -82,4 +82,12 @@ class UserGoalListViewTests(APITestCase):
         count = UserGoals.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        
+
+    def test_no_goal_view_logged_out(self):
+        """
+        when a user who is not logged in 
+        sends an HTTP request, should recieve
+        403 FORBIDDEN message
+        """
+        response = self.client.get('/goals/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)    
