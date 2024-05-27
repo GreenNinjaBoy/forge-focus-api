@@ -58,10 +58,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
+    'dj_rest_auth',
 
     'profiles',
     'refine',
     'goals',
+    'tags',
 ]
 
 MIDDLEWARE = [
