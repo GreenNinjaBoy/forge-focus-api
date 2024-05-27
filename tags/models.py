@@ -9,17 +9,17 @@ tag_color_choices = [
     ("orange", "Orange"),
 ]
 
-class Tags(model.Model):
+class Tags(models.Model):
     """
     This is the tags model
     """
-    owner = model.ForeignKey(
+    owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="tags")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    name = models.Charfield(max_lenght=20)
+    name = models.CharField(max_length=20)
     color = models.CharField(choices=tag_color_choices, max_length=20)
 
     class Meta:
