@@ -87,3 +87,22 @@ def get_deadline_info_goal(self, obj):
             return None
     else:
         return None
+
+def get_context(self, obj):
+    """
+    This function will generate a
+    new name field containing the
+    name of linked usergoal,
+    1. if no goal but a refine handles 
+    2. if no goal and no refine handles
+    """
+    if obj.goal:
+        goal_id = obj.goal.id
+        goal = UserGoals.objects.get(id=goal_id)
+        return f'One step closer to {goal.goal_title}'
+    else:
+        if obj.refine:
+            return f'One day at a time to refine {obj.refine.name}'
+        else:
+            return "A side task"
+
