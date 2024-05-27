@@ -110,4 +110,19 @@ class UserGoalListViewTests(APITestCase):
         self.assertEqual(goal_owner, 'Tester1')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
+    def test_parent_id_filter(self):
+        """
+        When a user is logged in they can
+        request children goals of a specific
+        parent goal. 
+        """
+        self.client.login(username="Tester2", password ="Tester2")
+        self.client.post(
+            '/goals/', {"goal_title": "child goal 1", "refine": 2, "parent": 1})
+        response = self.client.get('/goals/?parent_id=1')
+        number_goals_returned = response.data['count']
+        results = response.data['results']
+        goal_title = results[0]['gaol_title']
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(goal_title, 'refine 3 goal')
+        
