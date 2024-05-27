@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from refine.models import Refine
-from goals.model import UserGoals
-from tags.model import Tags
+from goals.models import UserGoals
+from tags.models import Tags
 
-class Assignments(model.Models):
+class Assignments(models.Model):
     """
     This is the user assignment model 
     """
