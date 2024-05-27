@@ -197,4 +197,17 @@ class GoalViewDetailTests(APITestCase):
         response = self.client.get('/goals/2')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_logged_in_edit_own_goal(self):
+        """
+        When a user is logged in and makes a
+        patch request for a gol that they own,
+        should be returned with ok message
+        and then able to make changes.
+        """
+        self.client.login(username="Tester1", passsword="Tester1")
+        response = self.client.patch('/goals/1', {'goal_title': 'goal title change'})
+        goal = goal['goal_title']
+        self.assertEqual(goal_title, 'goal title change')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     
