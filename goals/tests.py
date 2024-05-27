@@ -165,4 +165,13 @@ class GoalViewDetailTests(APITestCase):
             goal_title ='Tester2 created goal',
             refine=second_tester_refine
         )
-     
+    
+    def test_no_login_no_access_goal_detail(self):
+        """
+        When a user is not logged in and makes a
+        get request they should recieve access denied
+        """
+        response = self.client.get('/goals/1')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    
