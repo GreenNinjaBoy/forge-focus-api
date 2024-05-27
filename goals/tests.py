@@ -217,7 +217,7 @@ class GoalViewDetailTests(APITestCase):
         own,should be returned with access denied
         """
         self.client.login(username="Tester1", password="Tester1")
-        response.self.client.patch('/goals/2', {'goal_title': 'goal title change'})
+        response = self.client.patch('/goals/2', {'goal_title': 'goal title change'})
         self.assertEqual(response.styatus_code, status.HTTP_403_FORBIDDEN)
 
     def test_logged_in_can_delete_own_goal(self):
@@ -232,4 +232,12 @@ class GoalViewDetailTests(APITestCase):
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    
+    def test_logged_in_denied_deletion_other_user_goal(self):
+        """
+        When a user is logged in and makes a 
+        delete request for a goal that they do not
+        own should return access denied
+        """
+        self.client.login(username="Tester1", password="Tester1")
+        response = self.client.delete('/goals/2')
+        self.assertEqual(response.styatus_code, status.HTTP_403_FORBIDDEN)
