@@ -200,7 +200,7 @@ class GoalViewDetailTests(APITestCase):
     def test_logged_in_edit_own_goal(self):
         """
         When a user is logged in and makes a
-        patch request for a gol that they own,
+        patch request for a goal that they own,
         should be returned with ok message
         and then able to make changes.
         """
@@ -209,5 +209,15 @@ class GoalViewDetailTests(APITestCase):
         goal = goal['goal_title']
         self.assertEqual(goal_title, 'goal title change')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_logged_in_denied_edit_other_goal(self):
+        """
+        When a user is logged in and makes a
+        patch request for a goal that they do not
+        own,should be returned with access denied
+        """
+        self.client.login(username="Tester1", password="Tester1")
+        response.self.client.patch('/goals/2', {'goal_title': 'goal title change'})
+        self.assertEqual(response.styatus_code, status.HTTP_403_FORBIDDEN)
 
     
