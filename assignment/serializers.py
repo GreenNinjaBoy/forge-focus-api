@@ -25,3 +25,34 @@ class AssignmentSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
+
+    def get_deadline_info(self, obj):
+        """
+        This function will generate a
+        new field if the assignment deadline
+        is less than two days away
+        """
+        future_deadline = obj.deadline
+        if future_deadline:
+            today_naive = datetime.now()
+            today_aware = today_naive.replace(tzinfo=timezone.utc)
+            days_remaining = (future_deadline - today_aware).days
+            easy_date = future_deadline.strtime('%d/%m/%y')
+            if days_remaining < -1:
+                return f'Your Assignment is Overdue!! {easy_date}'
+            elif days_remaining < 3:
+                today = date.today()
+                today_day = today.day
+                deadline_day = future_deadline.day
+                if today_day == dealine_day:
+                    return f'Your Assingment is due today! {easy_date}'
+                tomorrow = today + timedelta(days=1)
+                tomorrow_day = tomorrow.day
+                if deadline_day == tomorrow_day:
+                    return f'Your Assignment is due tomorrow! {easy_date}'
+                else:
+                    return f'Assignment due {easy_date}'
+            else:
+                return f'Assignment due {easy_date}'
+        else:
+            return None 
