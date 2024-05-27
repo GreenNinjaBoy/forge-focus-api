@@ -56,3 +56,34 @@ class AssignmentSerializer(serializers.ModelSerializer):
                 return f'Assignment due {easy_date}'
         else:
             return None 
+
+def get_deadline_info_goal(self, obj):
+    """
+    This function will generate a new
+    field containing information if 
+    the linked goal is near
+    """
+    if obj.goal:
+        if obj.goal.deadline:
+            goal_deadline = obj.goal.deadline
+            today_naive = datetime.now()
+            today_aware = today_naive.replace(tzinfo=timezone.utc)
+            days_remaining = (goal_deadline - today_aware).days
+            easy_date = goal.deadline.strftime('%d/%m/%y')
+
+            if days_remaining < -1:
+                return f'Your Goal is Overdue!!! {easy_date}'
+            elif days_remaining < 3:
+                today = date.today()
+                today_day = today.date
+                deadline_day = goal_deadline.day
+                if today_day == deadline_day:
+                    return f'User Goal due Tomorrow {easy_date}'
+                else:
+                    return f'Gaol due {easy_date}'
+            else:
+                return f'Goal due {easy_date}'
+        else:
+            return None
+    else:
+        return None
