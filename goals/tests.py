@@ -125,4 +125,44 @@ class UserGoalListViewTests(APITestCase):
         goal_title = results[0]['gaol_title']
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(goal_title, 'refine 3 goal')
-        
+
+
+class GoalViewDetailTests(APITestCase):
+    """
+    This is the tests for the Goal
+    details view
+    """
+    def setUp(self):
+        """
+        Creating two users for test
+        each user will have one focus
+        and one goal
+        """
+        UserGoals.objects.all().delete()
+        first_tester = User.objects.create_user(
+            username='Tester1', password='Tester1'
+        )
+        Refine.objects.create(
+            owner=first_tester, 
+            name="Tester1 refine object", 
+            reason="No goals for this user should be displayed"
+        )
+        UserGoals.objects.create(
+            owner=first_tester,
+            goal_title="Tester 1 created goal",
+            refine=first_tester_refine
+        )
+        second_tester = User.objects.create_user(
+            username='Tester2', password='Tester2'
+        )
+        second_tester_refine = Refine.objects.create(
+            owner=second_tester, 
+            name="Tester2 refine object", 
+            reason="goals testing"
+        )
+        UserGoals.objects.create(
+            owner=second_tester,
+            goal_title ='Tester2 created goal',
+            refine=second_tester_refine
+        )
+     
