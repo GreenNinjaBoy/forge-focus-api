@@ -187,4 +187,14 @@ class GoalViewDetailTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(goal_title, 'Tester 1 goal')
 
+    def test_logged_in_denied_other_user_goals(self):
+        """
+        When a user is logged in and makes a 
+        get request for a goal they do not own, 
+        they should be returned with access denied.
+        """
+        self.client.login(username="Tester1", password="Tester1")
+        response = self.client.get('/goals/2')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     
