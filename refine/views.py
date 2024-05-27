@@ -26,7 +26,7 @@ class RefineList(generics.ListCreateAPIView):
         (with null last), and then created_at.
         """
         if self.request.user.is_authenticated:
-            return self.request.user.refine.all().order_by('rank', 'created_at')
+            return self.request.user.refine.all().order_by('priority', 'created_at')
         else:
             return Refine.objects.none()  # This will return an empty queryset
 
