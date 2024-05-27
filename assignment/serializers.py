@@ -106,3 +106,23 @@ def get_context(self, obj):
         else:
             return "A side task"
 
+class Meta:
+    model = Assignments
+    fields = [
+        'id',
+        'owner',
+        'is_owner',
+        'created_at',
+        'updated_at',
+        'refine',
+        'usergoals',
+        'today',
+        'achieved',
+        'name',
+        'deadline',
+        'tags',
+        'active',
+        'deadline_info',
+        'goal_deadline_info',
+        'context'
+        ]
