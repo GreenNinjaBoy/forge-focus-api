@@ -174,4 +174,17 @@ class GoalViewDetailTests(APITestCase):
         response = self.client.get('/goals/1')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_logged_in_retrieve_own_goals(self):
+        """
+        When a user is logged in and makes a 
+        get request for a goal they own, that
+        goal should be returned.
+        """
+        self.client.login(username="Tester1", password="Tester1")
+        response = self.client.get('/goals/1')
+        goal = response.data
+        goal_title = goal['goal_title']
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(goal_title, 'Tester 1 goal')
+
     
