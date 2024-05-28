@@ -44,3 +44,55 @@ class ListFilter(filters.BaseFilterBackend):
                 queryset = queryset.filter(goal=goal)
         return queryset
 
+class AssignmentList(generics.ListCreateAPIView):
+    """
+    This view will return to the logged in 
+    user a list of tasks that the user has
+    already created and will also allow the 
+    user to create new tasks.
+    """
+    serializer_class = AssignmentSerializer
+    filter_backends = [
+        ListFilter,
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+
+    ordering_fields = [
+        'updated_at',
+        'refine',
+        'goal_deadline',
+        'achieve_by',
+        'created_at',
+    ]
+    search_fields = [
+        'name',
+        'refine_name',
+        'goal_title',
+    ]
+
+    def perform_create(self, serializer):
+        """
+        This will add the owners data to 
+        the object before it is created
+        and saved
+        """
+        owner = self.request.user
+        refine_id = self.request.data.get('refine')
+        if refine_id:
+            refine = Refine.objects.get(pk=refine_id)
+            image = refine.image
+        else:
+            image = ''
+        serializer.save(image=image, owner=owner)
+
+    def get_queryset(self):
+        """
+        This will pull all of the assignment
+        instances that are owned by the logged
+        in user, within this order by deadline
+        and then created_by
+        """
+        return sxelf.request.user.task.all().order_by(
+            'deadline', 'goal_deadline')
+
