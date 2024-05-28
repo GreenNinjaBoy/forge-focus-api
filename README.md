@@ -26,3 +26,16 @@ This is an API which will provide full CRUD functionality for the management of 
 - [Acknowledgements](#Acknoledgements)
 
 ## API Features
+
+### Security Features
+
+Only the following can be accessed by users who are not authenticated, all other endpoints of the API
+can be accessed if a user has created an account and is authorised.
+
+- The base root, This give the user a welcome message and a some information
+- The /dj-rest-auth/registration/ endpoint, this will allow new users to register to the application.
+- The /dj-rest-auth/login/ endpoint, which allows registered users to log in.
+
+Only owners of a data instance can access any CRUD functionality related to it. All get requests
+made by a user/owner will return a list with only the items belonging to that user/owner. 
+Any requests made by a user/owner for a specific item that user/owner does not own will be denied.

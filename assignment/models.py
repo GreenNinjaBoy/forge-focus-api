@@ -12,7 +12,7 @@ class Assignments(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name="assignments")
-    Refine = models.ForeignKey(
+    refine = models.ForeignKey(
         Refine,
         on_delete=models.CASCADE,
         related_name="assignment_for_refine",

@@ -1,5 +1,6 @@
 asgiref==3.8.1
 cloudinary==1.40.0
+coverage==7.5.3
 dj-database-url==2.1.0
 dj-rest-auth==6.0.0
 Django==5.0.6

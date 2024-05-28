@@ -7,12 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \ 
     && apt-get install -y --no-install-recommends make build-essential libssl-dev libpq-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget ca-certificates curl gnupg llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev mecab-ipadic-utf8 git postgresql-client telnet unzip zlib1g-dev
 
-RUN apt-get update && \
-    apt-get install -y \
-    graphviz \
-    libgraphviz-dev \
-    pkg-config
-
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 RUN mkdir -p /etc/apt/keyrings && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \

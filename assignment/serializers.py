@@ -114,7 +114,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
             'is_owner',
             'created_at',
             'updated_at',
-            'Refine',
+            'refine',
             'usergoals',
             'today',
             'achieved',

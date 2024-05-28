@@ -42,21 +42,21 @@ class AssignmentListViewTests(APITestCase):
         Assignments.objects.create(
             owner=first_tester,
             name='First refine today',
-            Refine=first_tester_refine,
+            refine=first_tester_refine,
             today=True,
             achieved=True
         )
         Assignments.objects.create(
             owner=first_tester,
             name='Tester1 first refine',
-            Refine=first_tester_refine,
+            refine=first_tester_refine,
             today=True
         )
         Assignments.objects.create(
             owner=first_tester,
             usergoals=first_tester_goal,
             name='Tester1 first active goal, backlog only',
-            Refine=first_tester_refine
+            refine=first_tester_refine
         )
         second_tester = User.objects.create_user(
             username='Tester2',
@@ -76,21 +76,21 @@ class AssignmentListViewTests(APITestCase):
         Assignments.objects.create(
             owner=second_tester,
             name='Second refine today',
-            Refine=second_tester_refine,
+            refine=second_tester_refine,
             today=True,
             achieved=True
         )
         Assignments.objects.create(
             owner=second_tester,
             name='Tester2 first refine',
-            Refine=second_tester_refine,
+            refine=second_tester_refine,
             today=True
         )
         Assignments.objects.create(
             owner=second_tester,
             usergoals=second_tester_goal,
             name='Tester2 first active goal, backlog only',
-            Refine=second_tester_refine
+            refine=second_tester_refine
         )
 
     def tearDown(self):
@@ -109,4 +109,19 @@ class AssignmentListViewTests(APITestCase):
         count = Assignments.objects.count()
         self.assertEqual(count, 6)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+    
+    def test_logged_in_creat_assignment_yes(self):
+        """
+        When a user is logged in and sends
+        a post request with name, the user
+        should be returned with a 201 message
+        and the assignment created
+        """
+        self.client.login(username="Tester1", password="Tester1")
+        response = self.client.post(
+            '/assignment/', {"name": "name of assignment"})
+        count = Assignments.objects.count()
+        self.assertEqual(count, 7)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
     
