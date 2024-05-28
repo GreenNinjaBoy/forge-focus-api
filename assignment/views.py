@@ -61,7 +61,7 @@ class AssignmentList(generics.ListCreateAPIView):
     ordering_fields = [
         'updated_at',
         'refine',
-        'goal_deadline',
+        'goal_achieve_by',
         'achieve_by',
         'created_at',
     ]
@@ -93,8 +93,8 @@ class AssignmentList(generics.ListCreateAPIView):
         in user, within this order by deadline
         and then created_by
         """
-        return sxelf.request.user.task.all().order_by(
-            'deadline', 'goal_deadline')
+        return self.request.user.assignments.all().order_by(
+            'achieve_by', 'achieve_by')
 
 class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
