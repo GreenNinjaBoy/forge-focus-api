@@ -8,9 +8,9 @@ This is an API which will provide full CRUD functionality for the management of 
 **Link for frontend react repository will go here when available**
 
 ## Table of Contents
+- [Design of the API](#Design-of-the-API)
 - [API Features](#API-Features)
 - [Future Features For API](#Future-Features-for-API)
-- [Design of the API](#Design-of-the-API)
 - [Lanuages Used](#Lanuages-Used)
 - [Frameworks and Libraries Used](#Frameworks-and-Linraries-used)
 - [Tools and Technologies Used](#Tools-and-Technologies-Used)
@@ -24,6 +24,17 @@ This is an API which will provide full CRUD functionality for the management of 
 - [Connecting to this API](#Connecting-to-this-API)
 - [Credits](#Credits)
 - [Acknowledgements](#Acknoledgements)
+
+## Design of the API
+
+### Aim
+
+The aim of the API is to store task data that includes setting areas to refine ("Refine"), goals and assignments, and 
+provide a full range of CRUD functionality to any linked applications.  
+
+### Considerations when creating
+
+
 
 ## API Features
 
