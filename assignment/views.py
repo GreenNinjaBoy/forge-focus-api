@@ -96,3 +96,12 @@ class AssignmentList(generics.ListCreateAPIView):
         return sxelf.request.user.task.all().order_by(
             'deadline', 'goal_deadline')
 
+class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    This view will return a specific
+    assignment where the pk will
+    be the id of the task
+    """
+    serializer_class = AssignmentSerializer
+    permission_classes = [OwnerOnly]
+    queryset = Assignment.object.all()
