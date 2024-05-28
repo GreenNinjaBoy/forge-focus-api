@@ -57,3 +57,39 @@ class AssignmentListViewTests(APITestCase):
         name='Tester1 first active goal, backlog only',
         refine=first_tester_refine
     )
+    second_tester = User.objects.create_user(
+        username='Tester2',
+        password='Tester2',
+    )
+    second_tester_refine = Refine.objects.create(
+        owner=second_tester,
+        name="Tester 2 Refine name",
+        reason="Test Refine"
+    )
+    second_tester_goal = UserGoals.objects.create(
+        owner=second_tester,
+        goal_title='Tester2 Goal',
+        refine=second_tester_refine,
+        active=True
+    )
+    Assignments.objects.create(
+        owner=second_tester,
+        name='Second refine today',
+        refine=second_tester_refine,
+        today=True,
+        achieved=True
+    )
+    Assignments.objects.create(
+        owner=second_tester,
+        name='Tester2 first refine',
+        refine=second_tester_refine,
+        today=True
+    )
+    Assigments.objects.create(
+        owner=second_tester,
+        goal=second_tester_goal,
+        name='Tester2 first active goal, backlog only',
+        refine=second_tester_refine
+    )
+
+    
