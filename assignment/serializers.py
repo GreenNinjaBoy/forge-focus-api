@@ -17,7 +17,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
     5. goal_name
     """
     owner = serializers.ReadOnlyField(source='owner.username')
-    is_owner = seralizers.SeralizerMethodField()
+    is_owner = serializers.SerializerMethodField()
     deadline_info = serializers.SerializerMethodField()
     goal_deadline_info = serializers.SerializerMethodField()
     context = serializers.SerializerMethodField()

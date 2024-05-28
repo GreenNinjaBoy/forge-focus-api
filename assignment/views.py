@@ -1,5 +1,5 @@
 from .models import Assignments, Refine
-from .serializers import TaskSerializer
+from .serializers import AssignmentSerializer
 from rest_framework import generics, filters
 from forge_focus.permissions import OwnerOnly
 
@@ -104,4 +104,4 @@ class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = AssignmentSerializer
     permission_classes = [OwnerOnly]
-    queryset = Assignment.object.all()
+    queryset = Assignments.objects.all()
