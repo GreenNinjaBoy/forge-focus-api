@@ -28,7 +28,7 @@ class RefineList(generics.ListCreateAPIView):
         if self.request.user.is_authenticated:
             return self.request.user.refine.all().order_by('priority', 'created_at')
         else:
-            return Refine.objects.none()  # This will return an empty queryset
+            return Refine.objects.none() 
 
 class RefineDetails(generics.RetrieveUpdateDestroyAPIView):
     """

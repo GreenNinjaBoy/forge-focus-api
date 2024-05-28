@@ -42,6 +42,10 @@ class UserGoalListViewTests(APITestCase):
             refine=second_tester_refine
         )
     
+    def tearDown(self):
+        User.objects.filter(username__startswith='Tester1').delete()
+        User.objects.filter(username__startswith='Tester2').delete()
+        
     def test_logged_out_create_goal_denied(self):
         """
         A user who is not logged in attempts a

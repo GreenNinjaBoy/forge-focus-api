@@ -12,7 +12,11 @@ class RefineListViewsTests(APITestCase):
     """
     def setUp(self):
         User.objects.create_user(username='Tester1', password='Tester1')
-        Refine.objects.all().delete() # This will make sure the database for this user is clean before running tests
+        Refine.objects.all().delete()
+    
+    def tearDown(self):
+        User.objects.filter(username__startswith='Tester1').delete()
+        User.objects.filter(username__startswith='Tester2').delete()
 
     def test_logged_out_no_create_refine(self):
         """

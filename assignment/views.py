@@ -1,6 +1,7 @@
 from .models import Assignments, Refine
 from .serializers import AssignmentSerializer
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions, status
+from rest_framework.response import Response
 from forge_focus.permissions import OwnerOnly
 
 class ListFilter(filters.BaseFilterBackend):
@@ -52,6 +53,7 @@ class AssignmentList(generics.ListCreateAPIView):
     user to create new tasks.
     """
     serializer_class = AssignmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [
         ListFilter,
         filters.OrderingFilter,
@@ -77,6 +79,9 @@ class AssignmentList(generics.ListCreateAPIView):
         the object before it is created
         and saved
         """
+        if not self.request.user.is_authenticated:
+            return Response({'detail': 'Authentication credentials were not provided.'}, status=status.HTTP_403_FORBIDDEN)
+
         owner = self.request.user
         refine_id = self.request.data.get('refine')
         if refine_id:
