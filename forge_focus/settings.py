@@ -85,6 +85,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
+]
+
 ROOT_URLCONF = 'forge_focus.urls'
 
 TEMPLATES = [
