@@ -43,6 +43,9 @@ ALLOWED_HOSTS = [
                 '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',
                 '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
                 '.herokuapp.com',
+                'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
+                'https://greenninjaboy.github.io/forge-focus-app-PP5/',
+
                 ]
 
 
@@ -61,6 +64,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'corsheaders',
     
 
     'profiles',
@@ -78,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'forge_focus.urls'
