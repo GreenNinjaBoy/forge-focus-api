@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.permissions import AllowAny
+from .views import root_route, logout_route
 
 urlpatterns = [
     path('admin/', admin.site.urls),

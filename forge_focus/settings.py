@@ -26,7 +26,34 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 30,
+    'DATETIME_FORMAT': '%d %b %Y',
+}
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERE_CLASSES'] = [
+        'rest_framework.rendererd.JSONRenderer',
+    ]
 
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+
+REST_AUTH = {
+    'USER_DETAILS_SERIALIZER': 'demo.serializers.UserSerializer',
+    'REGISTER_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -34,18 +61,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
-                'testserver',
-                'localhost',
-                '127.0.0.1',
-                '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',
-                '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
-                '.herokuapp.com',
-                'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
-                '8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net',
-                'https://greenninjaboy.github.io/forge-focus-app-PP5/',
+    os.environ.get('ALLOWED_HOSTS'),
+    #'testserver',
+    'localhost',
+    # '127.0.0.1',
+    # '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',
+    # '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
+    # '.herokuapp.com',
+    # 'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
+    # '8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net',
+    # 'https://greenninjaboy.github.io/forge-focus-app-PP5/',
+    # 'https://github.com/GreenNinjaBoy/forge-focus-app-PP5.git',
 
                 ]
 
@@ -65,9 +94,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
     'corsheaders',
-    
-
     'profiles',
     'refine',
     'goals',
@@ -86,10 +117,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net",
+    os.environ.get('CLIENT_ORIGIN'),
 ]
 
 ROOT_URLCONF = 'forge_focus.urls'
