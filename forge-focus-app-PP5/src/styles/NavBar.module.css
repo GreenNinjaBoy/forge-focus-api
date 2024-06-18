@@ -1,0 +1,57 @@
+.Header {
+    background-color: #002d2b;
+    height: 55px;
+    align-items: normal;
+}
+
+.LogoContainer {
+    display: flex;
+}
+
+.Logo {
+    height: 39px;
+    display: inline;
+    vertical-align: bottom;
+}
+
+.LogoName {
+    font-family: "Bebas Neue", sans-serif;
+    color: #007926;
+    display: inline-block;
+    margin-bottom: 0;
+    padding-top: 5px;
+}
+
+.LogoName:hover {
+    color: #3c159c;
+}
+
+.Link {
+    margin-bottom: 15px;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.NavLinks {
+    position: fixed;
+    height: 55px;
+    right: 0px;
+    padding: 10px, 20px 5px 20px;
+    background-color: #002d2b;
+    text-align: left;
+    align-items: center;
+    border-bottom-left-radius: 5px;
+}
+
+@media screen and (min-width:768px){
+    .Link {
+        margin-left: 30px;
+        margin-bottom: 0px;
+    }
+    .NavLinks {
+        position: static;
+    }
+    .DesktopLinks{
+        justify-content: flex-end;
+    }
+}

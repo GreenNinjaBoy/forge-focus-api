@@ -1,0 +1,39 @@
+/*Styling for forms */
+
+.FormContainer {
+    position: relative;
+}
+
+.FinalGroup {
+    margin-bottom: 45px;
+}
+
+.SubmitButton {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
+/* This will handle the error alert*/
+
+/* Error Alert */
+.ErrorAlert {
+    color: black;
+    background-color: #fbda66;
+    margin-bottom: 5px;
+    padding: 5px 10px 5px 10px
+}
+
+
+@media screen and (min-width:768px){
+
+.FormGroup {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+    .FormLabel {
+    margin-right: 5px;
+    margin-bottom: 0px;
+    line-height: 38px;
+    }
+}

@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
                 '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
                 '.herokuapp.com',
                 'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
+                '8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net',
                 'https://greenninjaboy.github.io/forge-focus-app-PP5/',
 
                 ]
@@ -74,6 +75,8 @@ INSTALLED_APPS = [
     'tags',
 ]
 
+SITE_ID = 1
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,7 +89,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
+    "https://8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net",
 ]
 
 ROOT_URLCONF = 'forge_focus.urls'
@@ -130,7 +133,8 @@ else:
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeanyapp.com",
     "https://*.herokuapp.com",
-    "https://*.gitpod.io"
+    "https://*.gitpod.io",
+    "https://*.codeinstitute-ide.net",
 ]
 
 # Password validation
