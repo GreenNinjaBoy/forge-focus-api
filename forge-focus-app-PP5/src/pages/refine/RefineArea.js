@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import RefineView from './RefineView';
@@ -47,11 +47,11 @@ const RefineArea = ( {id} ) => {
   }, [history, id])
 
   function RefineContext() {
-    if (RefineState==='view') {
+    if (refineState==='view') {
       return <RefineView {...refineData} setRefineData={setRefineData} setRefineState={setRefineState}/>
     } else if (refineState==='edit') {
       return <RefineEdit {...refineData} id={id} setRefineData={setRefineData} setRefineState={setRefineState}/>
-    } else if (RefineState==='delete') {
+    } else if (refineState==='delete') {
       return <RefineDelete {...refineData} id={id} setRefineState={setRefineState}/>
     }
   };
@@ -60,7 +60,7 @@ const RefineArea = ( {id} ) => {
   return (
     <div>
       {hasLoaded ? (
-        <FocusContext />
+        <RefineContext />
       ) : (
         <div>
           <Spinner animation="border" />

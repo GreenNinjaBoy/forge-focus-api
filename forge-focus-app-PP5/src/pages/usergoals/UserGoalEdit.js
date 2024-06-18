@@ -28,7 +28,7 @@ const UserGoalEdit = (props) => {
     }
   };
 
-  const userGoalList = userGoals.results;
+  const userGoalList = usergoals.results;
 
   const [userGoalData, setUserGoalData] = useState ({
     newTitle: title,
@@ -159,7 +159,6 @@ const UserGoalEdit = (props) => {
               name="newCriteria"
               value={newCriteria}
               onChange={handleChange}
-              className={styles.Input}
             />
           </Form.Group>
 
@@ -175,7 +174,6 @@ const UserGoalEdit = (props) => {
               name="newAchieve_by"
               value={newAchieve_By}
               onChange={handleChange}
-              className={styles.DateInput}
             />
           </Form.Group>
 

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults';
 import { Alert, Button, Form, Image } from 'react-bootstrap';
-import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../contexts/GlobalMessageContext';
+import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../context/GlobalMessageContext';
 
 const RefineEdit = (props) => {
   const {
@@ -122,7 +122,7 @@ const RefineEdit = (props) => {
                 ))}
               </div>
               <Form.Group controlId="refinement-new-why">
-                <Form.Label className={styles.FormLabel}>Why:</Form.Label>
+                <Form.Label> Why:</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Why is this area important to you? Why do you want to refine it?"

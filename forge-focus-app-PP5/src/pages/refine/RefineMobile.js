@@ -7,7 +7,7 @@ import AssignmentList from '../assignments/AssignmentList';
 import UserGoalSectionMobile from '../usergoals/UserGoalsSectionMobile';
 import RefineArea from './RefineArea';
 
-const RefineMobile = () => {
+const RefineMobile = ( {id} ) => {
   const [keyParameters, setKeyParameters] = useState({
     refine_id: id,
     usergoal_id: '',

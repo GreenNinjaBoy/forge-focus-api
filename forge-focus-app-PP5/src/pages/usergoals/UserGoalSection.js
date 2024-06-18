@@ -50,12 +50,12 @@ const UserGoalSection = (props) => {
       const userGoal = usergoals.results.filter((userGoal) => userGoal.id === userGoal_id)[0];
       setCurrentUserGoal(userGoal)
     };
-    if (hasLoaded && goal_id) {
+    if (hasLoaded && userGoal_id) {
       getCurrentUserGoal();
     } else {
       setCurrentUserGoal();
     }
-  }, [userGoal_id, hasLoaded, userGoals]);
+  }, [userGoal_id, hasLoaded, usergoals]);
 
   function ContextAwareToggle({ children, eventKey, callBack}) {
     const openUserGoal = () => {
@@ -91,13 +91,13 @@ const UserGoalSection = (props) => {
             </div>
       </div>
     );
-  }
+  };
 
   function UserGoalContext () {
     if (userGoalState==='view') {
       return currentUserGoal ? (
         <>
-        <UserGoalsView {...currentUserGoal} userGoals={userGoals} setCurrentUserGoal={setCurrentUserGoal} setUserGoalState={setUserGoalState} />
+        <UserGoalsView {...currentUserGoal} userGoals={usergoals} setCurrentUserGoal={setCurrentUserGoal} setUserGoalState={setUserGoalState} />
         <div>
           <h3>Assignments for your goal</h3>
           <AssignmentList refine_id={refine_id} userGoal_id={userGoal_id} type='goal'/>
@@ -127,43 +127,41 @@ const UserGoalSection = (props) => {
     <div>
       <div>
         <h3>Goal List</h3>
-        <p>Select a goal to viewe more</p>
+        <p>Select a goal to view more</p>
         {hasLoaded ? (
-          usergoals.results.length>0 ? (
-            usergoals.results.map( usergoal =>
-            <ContextAwareToggle eventKey={usergoal.id} key={usergoal.id}>
-              <p>{userGoal.title}</p>
-            </ContextAwareToggle>
-          ))
-        ) : (
-          <div>
-            <p>No goals yet</p>
-          </div>
-        )
-      ) : (
-        <div>
-              <Spinner animation="border" />
-              <p>We are just loading your goals</p>
+          usergoals.results.length > 0 ? (
+            usergoals.results.map(usergoal => (
+              <ContextAwareToggle eventKey={usergoal.id} key={usergoal.id}>
+                <p>{usergoal.title}</p>
+              </ContextAwareToggle>
+            ))
+          ) : (
+            <div>
+              <p>No goals yet</p>
             </div>
           )
-          <Button onClick={handleCreate}>
-            <div>
-              Add a goal
-            </div>
-          </Button>
+        ) : (
+          <div>
+            <Spinner animation="border" />
+            <p>We are just loading your goals</p>
+          </div>
+        )}
+        <Button onClick={handleCreate}>
+          <div>Add a goal</div>
+        </Button>
       </div>
       <div>
         {hasLoaded ? (
-          <GoalContext />
+          <UserGoalContext />
         ) : (
-          <div className={styles.SpinnerContainer}>
+          <div>
             <Spinner animation="border" />
             <p>Just loading ...</p>
-        </div>
+          </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default UserGoalSection

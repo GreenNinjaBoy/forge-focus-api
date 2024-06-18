@@ -3,7 +3,7 @@ import { Accordion, Card, Spinner} from 'react-bootstrap';
 import { useAccordionToggle, AccordionContext } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
 import UserGoalCreate from './UserGoalCreate';
-import IndividualUserGoals from '.IndividualUserGoals';
+import IndividualUserGoals from './IndividualUserGoals';
 
 const UserGoalsSectionMobile = (props) => {
   const {
@@ -62,7 +62,7 @@ const UserGoalsSectionMobile = (props) => {
       {hasLoaded ? (
         usergoals.results.length>0 && (
           usergoals.results.map( goal => (
-            <IndividualUserGoals key={usergoal.id} refine_id={refine_id} usergoal={usergoal} usergoals={usergoals} setUserGoals={setUserGoals}/>
+            <IndividualUserGoals key={usergoals.id} refine_id={refine_id} usergoals={usergoals}  setUserGoals={setUserGoals}/>
           ))
         )
       ) : (

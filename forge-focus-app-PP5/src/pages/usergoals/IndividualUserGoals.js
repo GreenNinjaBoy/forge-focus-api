@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { useAccordionToggle, AccordionContext } from 'react-bootstrap';
-import Accordion from 'react-bootstrap';
-import Card from 'react-bootstrap';
+import {Accordion, Card} from 'react-bootstrap';
 import UserGoalsView from './UserGoalsView';
 import UserGoalEdit from './UserGoalEdit';
 import AssignmentList from '../assignments/AssignmentList';
@@ -11,7 +10,7 @@ const IndividualUserGoals = (props) => {
 
   const {
     refine_id,
-    goal,
+    goals,
     usergoals,
     setUserGoals,
   } = props;
@@ -57,16 +56,16 @@ const IndividualUserGoals = (props) => {
   return (
     <Card key={usergoals.id}>
       <Card.Header>
-        <ContextAwareToggle as={Card.Header} eventkey={goal.id}>
-          <h3>{usergoal.title}</h3>
+        <ContextAwareToggle as={Card.Header} eventkey={goals.id}>
+          <h3>{usergoals.title}</h3>
         </ContextAwareToggle>
       </Card.Header>
-      <Accordion.Collapse eventKey={usergoal.id}>
+      <Accordion.Collapse eventKey={usergoals.id}>
         <Card.Body>
           <UserGoalContext />
           <div>
             <h3>Assignments for your goal</h3>
-            <AssignmentList usergoal_id={usergoal.id} refine_id={refine_id} type="goal" />
+            <AssignmentList usergoal_id={usergoals.id} refine_id={refine_id} type="goal" />
           </div>
         </Card.Body>
       </Accordion.Collapse>

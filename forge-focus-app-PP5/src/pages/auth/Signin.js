@@ -3,7 +3,7 @@ import pageStyles from '../../styles/Page.module.css'
 import formStyles from '../../styles/Form.module.css'
 import { Alert, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import {useCurrentUser, useSetCurrentUser} from '../../context/CurrentUserContext';
+import { useSetCurrentUser} from '../../context/CurrentUserContext';
 import axios from "axios";
 import {setTokenTimestamp} from '../../utils/Utils';
 import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from "../../context/GlobalMessageContext";
@@ -13,7 +13,7 @@ function Signin() {
     const setShowGlobalSuccess = useSetShowGlobalSuccess();
     const setGlobalSuccessMessage = useSetGlobalSuccessMessage();
 
-    const setCurrentUser = useCurrentUser();
+    const setCurrentUser = useSetCurrentUser();
 
     const [signInData, setSignInData] = useState({
         username: '',

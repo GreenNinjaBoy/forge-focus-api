@@ -12,7 +12,7 @@ export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
-export const useSetCurrentUserContext = () => useContext(SetCurrentUserContext);
+export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CheckedUserContext = createContext();
 export const SetCheckedUserContext = createContext();

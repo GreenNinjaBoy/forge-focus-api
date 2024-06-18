@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from '../styles/NavBar.module.css';
 import ffLogo from '../assets/ffLogo.png';
-import { useCurrentUser, useSetCurrentUserContext } from '../context/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../context/CurrentUserContext';
 import axios from 'axios';
 import { removeTokenTimestamp } from '../utils/Utils';
 import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../context/GlobalMessageContext';
@@ -15,7 +15,7 @@ const NavBar = () => {
     const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
     const currentUser = useCurrentUser();
-    const setCurrentUser = useSetCurrentUserContext();
+    const setCurrentUser = useSetCurrentUser();
 
     const setShowGlobalSuccess = useSetShowGlobalSuccess();
     const setGlobalSuccessMessage = useSetGlobalSuccessMessage();

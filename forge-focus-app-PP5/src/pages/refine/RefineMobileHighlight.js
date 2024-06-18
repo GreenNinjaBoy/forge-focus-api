@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import {Accordion, Card, Spinner} from 'react-bootstrap';
 import { useAccordionToggle, AccordionContext } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
-import UserGoalHighlights from '../usergoals/UserGoalHighlight';
+import UserGoalHighlight from '../usergoals/UserGoalHighlight';
 
 const RefineMobileHighlight = (props) => {
   const {
@@ -70,8 +70,8 @@ const RefineMobileHighlight = (props) => {
             {hasLoaded ? (
               <>
                 {userGoals.results.length ? (
-                  userGoals.results.map(goal => (
-                    <UserGoalHighlight key={userGoal.id} {...UserGoal} />
+                  userGoals.results.map( UserGoals => (
+                    <UserGoalHighlight key={UserGoals.id} {...UserGoals} />
                   ))
                 ) : (
                   <p>You don't have any goals set for this refinement</p>

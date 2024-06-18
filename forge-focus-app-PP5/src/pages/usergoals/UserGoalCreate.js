@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Button, From } from 'bootstrap';
 import {axiosReq} from '../../api/axiosDefaults';
-import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
-import axios from 'axios';
-import { set } from 'msw/lib/types/context';
+import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
 import { Form } from 'react-bootstrap';
 
 const UserGoalCreate = (props) => {
@@ -49,12 +47,12 @@ const UserGoalCreate = (props) => {
     formData.append('refine', refine_id)
     if (achieve_by) {
       const parts = achieve_by.split('-');
-      const date = new Date(part[0], parts[1] -1, parts[2], 12);
+      const date = new Date(parts[0], parts[1] -1, parts[2], 12);
       const djangoDate = date.toISOString();
       formData.append('achieve_by', djangoDate)
     }
     try {
-      const {data} = await axios.request.post('/usergoals/', formData);
+      const {data} = await axiosReq.post('/usergoals/', formData);
       setGlobalSuccessMessage("Congratulations you have created a new Goal");
       setShowGlobalSuccess(true);
       setKeyParameters({
@@ -140,7 +138,6 @@ const UserGoalCreate = (props) => {
               name="description"
               value={description}
               onChange={handleChange}
-              className={styles.Input}
             />
           </Form.Group>
 
@@ -157,7 +154,6 @@ const UserGoalCreate = (props) => {
               name="value"
               value={value}
               onChange={handleChange}
-              className={styles.Input}
             />
           </Form.Group>
 
@@ -174,7 +170,6 @@ const UserGoalCreate = (props) => {
               name="criteria"
               value={criteria}
               onChange={handleChange}
-              className={styles.Input}
             />
           </Form.Group>
 
@@ -191,7 +186,6 @@ const UserGoalCreate = (props) => {
               name="achieve_by"
               value={achieve_by}
               onChange={handleChange}
-              className={styles.DateInput}
             />
           </Form.Group>
 
