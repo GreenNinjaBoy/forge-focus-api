@@ -1,7 +1,7 @@
 import React from 'react';
 import {axiosReq} from '../../api/axiosDefaults';
 import {Link} from 'react-router-dom/cjs/react-router-dom';
-import {useSetGlobalSuccessMessage, useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
+import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
 
 
 const StepsTask = (props) => {
@@ -125,7 +125,7 @@ const StepsTask = (props) => {
       } else if (usergoal_achieve_by_info.includes("TODAY") || usergoal_achieve_by_info.includes("TOMORROW")) {
         return <p>{usergoal_achieve_by_info}</p>
       } else {
-        return <P>{usergoal_achieve_by_info}</P>
+        return <p>{usergoal_achieve_by_info}</p>
       }
     } else {
       return null
