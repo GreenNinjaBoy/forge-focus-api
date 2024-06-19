@@ -52,7 +52,7 @@ function Signin() {
     <div className={pageStyles.PageContainer}>
         <div className={pageStyles.SpaceTitle}>
             <div className={pageStyles.Title}>
-            <img/>
+            <img alt=""/>
             <h1>Log Into Your user Account</h1>
             </div>
         </div>

@@ -40,8 +40,8 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%d %b %Y',
 }
 if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDERE_CLASSES'] = [
-        'rest_framework.rendererd.JSONRenderer',
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
     ]
 
 REST_USE_JWT = True
@@ -51,7 +51,6 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH = {
-    'USER_DETAILS_SERIALIZER': 'demo.serializers.UserSerializer',
     'REGISTER_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
 }
 # Quick-start development settings - unsuitable for production

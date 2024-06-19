@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserGoalsView = ( props ) => {
+const UserGoalsView = (props) => {
   const {
     goaltitle,
     description,

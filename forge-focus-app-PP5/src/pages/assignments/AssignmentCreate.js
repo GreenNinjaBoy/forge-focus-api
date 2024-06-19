@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AssignmentCreate = () => {
+function AssignmentCreate() {
   return (
     <div>AssignmentCreate</div>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useGlobalSuccessMessage, useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../context/GlobalMessageContext';
+import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../context/GlobalMessageContext';
 
 const UserGoalDelete = ( props ) => {
   const {
@@ -15,7 +15,7 @@ const UserGoalDelete = ( props ) => {
   } = props
 
   const setShowGlobalSuccess = useSetShowGlobalSuccess();
-  const setGlobalSuccessMessage = useGlobalSuccessMessage();
+  const setGlobalSuccessMessage = useSetGlobalSuccessMessage();
 
   const goalList = usergoals.results;
 

@@ -34,6 +34,7 @@ const NavBar = () => {
 
     const loggedOutLinks = (
         <>
+        <NavLink className={styles.Link} to="/signup">Sign Up</NavLink>
         <NavLink className={styles.Link} to="/signin"> Sign In</NavLink>
         </>
     );

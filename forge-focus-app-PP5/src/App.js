@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import SuccessMessage from './components/SuccessMessage';
 import Footer from './components/Footer';
 import SignIn from './pages/auth/Signin';
+import Signup from './pages/auth/Signup';
 import Organise from './pages/organise/Organise';
 import Miscellaneous from './pages/organise/Miscellaneous';
 import Refine from './pages/refine/Refine';
@@ -46,6 +47,7 @@ function App() {
           <SuccessMessage />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/signin" render={() => <SignIn />} />
             <Route exact path="/organise" render={() => (
               authenticatedUser ? ( <Organise /> ) : ( <Redirect to={{pathname: "/signin"}} />)

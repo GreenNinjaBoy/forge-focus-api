@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Alert, Button, From } from 'bootstrap';
+import { Alert, Button, Form } from 'react-bootstrap';
 import {axiosReq} from '../../api/axiosDefaults';
 import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
-import { Form } from 'react-bootstrap';
 
 const UserGoalCreate = (props) => {
   const {
