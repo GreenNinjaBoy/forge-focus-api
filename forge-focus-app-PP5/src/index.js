@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom/cjs/react-router-dom';
+import { CurrentUserProvider } from './context/CurrentUserContext';
+import { GlobalMessageProvider } from './context/GlobalMessageContext';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Router>
+      <CurrentUserProvider>
+        <GlobalMessageProvider>
+          <App/>
+        </GlobalMessageProvider>
+      </CurrentUserProvider>
+    </Router>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

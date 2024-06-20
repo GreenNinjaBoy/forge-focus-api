@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import { Alert, Form } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useSetGlobalSuccessMessage, useShowGlobalSuccess } from '../../context/GlobalMessageContext';
+import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
 
 const AssignmentCreate = ( props) => {
   const {
     refine_id,
     usergoal_id,
     assignments,
-    setAssingments,
+    setAssignments,
     type
   } = props;
 
-  const setShowGlobalSuccess = useSetGlobalSuccess();
+  const setShowGlobalSuccess = useSetShowGlobalSuccess();
   const setGlobalSuccessMessage = useSetGlobalSuccessMessage();
 
   const assignmentList = assignments.results;
@@ -45,7 +45,7 @@ const AssignmentCreate = ( props) => {
     }
     if (achieve_by) {
       const parts = achieve_by.split('-');
-      const date = new Date(psrts[0], parts[1] -1, parts[2], 12);
+      const date = new Date(parts[0], parts[1] -1, parts[2], 12);
       const djangoDate = date.toISOString();
       formData.append('achieve_by', djangoDate);
     }
@@ -73,10 +73,17 @@ const AssignmentCreate = ( props) => {
     }
   };
 
+  const handleChange = (event) => {
+    setAssignmentData({
+      ...assignmentData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleCancel = (event) => {
     event.preventDefault();
     setErrors({});
-    setAssingmentData({
+    setAssignmentData({
       name: '',
       refine: refine_id,
       usergoal: usergoal_id,
