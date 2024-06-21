@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import formStyles from '../../styles/Form.module.css';
+import styles from '../../styles/AssignmentsCreate.module.css';
 import { axiosReq } from '../../api/axiosDefaults';
 import { Alert, Form } from 'react-bootstrap';
 import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../context/GlobalMessageContext';
@@ -94,53 +96,55 @@ const AssignmentEdit = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.EditContainer}>
       <Form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.MainForm}>
 
           {errors.name?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
-          <Form.Group controlId={`new-name-${type}`}>
-            <Form.Label >Assignment:</Form.Label>
+          <Form.Group controlId={`new-name-${type}`} className={styles.Group}>
+            <Form.Label className={styles.FormLabel} >Assignment:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Task name"
               name="newName"
               value={newName}
               onChange={handleChange}
+              className={styles.EditInput}
             />
           </Form.Group>
 
           {errors.deadline?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
 
-          <Form.Group controlId={`new-deadline-${type}`}>
+          <Form.Group controlId={`new-deadline-${type}`} className={styles.Group}>
             <Form.Label>Achieve By:</Form.Label>
             <Form.Control
               type="date"
               name="newDeadline"
               value={newAchieve_by}
               onChange={handleChange}
+              className={styles.DateInput}
             />
           </Form.Group>
 
         </div>
         {errors.non_field_errors?.map((message, idx) => (
-          <Alert key={idx}>
+          <Alert key={idx} className={formStyles.ErrorAlert}>
             {message}
           </Alert>
         ))}
-        <div>
+        <div className={styles.EditIconContainer}>
           <button type="submit" aria-label="Click to save assignment">
           <i className="fa-solid fa-floppy-disk"></i>
           </button>
-          <button onClick={handleCancel} aria-label="Click to cancel">
+          <button className={styles.EditIcon} onClick={handleCancel} aria-label="Click to cancel">
             <i className="fa-regular fa-rectangle-xmark"></i>
           </button>
         </div>

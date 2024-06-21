@@ -1,5 +1,7 @@
 import React from 'react';
 import { axiosRes } from '../../api/axiosDefaults';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/AssignmentsCreate.module.css';
 import { useSetGlobalSuccessMessage, useSetShowGlobalSuccess } from '../../context/GlobalMessageContext';
 import { Button } from 'react-bootstrap';
 
@@ -41,13 +43,13 @@ const AssignmentDelete = (props) => {
 
 
   return (
-    <div>
-      <p>Delete Assignment: {name}?</p>
+    <div className={styles.EditContainer}>
+      <p className={styles.DeleteParagraph}>Delete Assignment: {name}?</p>
       <div>
-        <Button  onClick={handleCancel}>
+        <Button className={`${btnStyles.Button} ${styles.Button}`}  onClick={handleCancel}>
           Cancel
         </Button>
-        <Button  onClick={handleDelete}>
+        <Button className={`${btnStyles.Button} ${styles.Button}`}  onClick={handleDelete}>
           Delete
         </Button>
       </div>

@@ -1,0 +1,81 @@
+.TaskContainer {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    margin-bottom: 10px;
+  }
+  
+  .TaskListContainer {
+    padding: 20px;
+  }
+  
+  .TaskDetails > h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .TaskDetails > p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+  
+  .Choice {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  
+  .ChoiceIcon {
+    color: #9c1576;
+    font-size: 1.2rem;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .ChoiceIcon:hover {
+    color: #3c159c;
+  }
+  
+  .ChoiceMenu {
+    width: 6rem;
+    min-width: 6rem;
+    padding: 5px 5px 5px 10px;
+    background-color: white;
+    border-color: #007926;  
+    border: solid;
+    border-width: 1.5px;
+    border-radius: 5px;
+  }
+  
+  .ChoiceOption {
+    color: #9c1576;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .ChoiceOption:hover {
+    color: #3c159c;
+  }
+  
+  .SpinnerContainer {
+    display: flex;
+  }
+  
+  .SpinnerContainer > p {
+    margin-left: 10px;
+  }
+  
+  @media screen and (min-width:768px){
+    .DesktopNewTask {
+      display: block;
+    }
+    .ChoiceIcon {
+      background-color: #f5f5f5;
+    }
+    .TaskContainer {
+      grid-template-columns: 30px 1fr;
+    }
+    .TaskListContainer {
+      padding: 10px;
+    }
+  }

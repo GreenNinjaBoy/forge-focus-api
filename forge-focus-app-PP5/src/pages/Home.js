@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import {useCurrentUser} from '../context/CurrentUserContext';
 import pagestyles from '../styles/Page.module.css'; 
+import btnStyles from '../styles/Button.module.css'
 import About from './About';
 
 const Home = () => {
@@ -18,10 +19,10 @@ const Home = () => {
 
     const signedInButtons = (
         <>
-            <Link to={'/organise'}>
+            <Link className={btnStyles.Button} to={'/organise'}>
             Get Organised!!
             </Link>
-            <Link to={'/steps'}>
+            <Link className={btnStyles.Button} to={'/steps'}>
                 Take a Step in the right direction!
             </Link>
         </>

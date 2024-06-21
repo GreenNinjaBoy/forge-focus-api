@@ -1,0 +1,55 @@
+/* Styling for all buttons keeping consistency across site */
+
+.ButtonContainer {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    max-width: 300px;
+  }
+  
+  .Button {
+    color: white;
+    background-color: #9c1576;
+    border-color: #9c1576;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 34px;
+    padding: 4px 10px 2px 10px;
+    margin: 10px;
+  }
+  
+  .Button:hover {
+    color: #9c1576;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    border-color: #9c1576;
+    border: solid;
+    border-width: 2px;
+    padding: 2px 10px 2px 10px;
+  }
+  
+  .Icon {
+    color: #9c1576;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #f5f5f5;
+    margin-left: 6px;
+  }
+  
+  .Icon:hover {
+    color: #3c159c;
+  }
+  
+  .BackCross {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #9c1576;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #f5f5f5;
+  }
+  
+  .BackCross:hover {
+    color: #3c159c;
+  }

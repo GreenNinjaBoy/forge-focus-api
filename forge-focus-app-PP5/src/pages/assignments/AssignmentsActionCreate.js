@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { Alert, Button, Form, Modal, Spinner } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
+import formStyles from '../../styles/Form.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/AssignmentsCreate.module.css';
 import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
-import AssignmentList from './AssignmentList';
+
 
 const AssignmentsActionCreate = (props) => {
   const {
@@ -94,7 +97,7 @@ const AssignmentsActionCreate = (props) => {
       const assignmentList = activeAssignments.results;
       setActiveAssignments(
         { results: [
-          ...AssignmentList,
+          ...assignmentList,
           data
         ]}
       );
@@ -122,30 +125,31 @@ const AssignmentsActionCreate = (props) => {
     <>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <div>
+          <div className={styles.ActionTaskForm}>
 
             {errors.name?.map((message, idx) => (
-              <Alert key={idx}>
+              <Alert key={idx} className={formStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}
             <Form.Group controlId="name">
-              <Form.Label>Assignment:</Form.Label>
+              <Form.Label className={styles.FormLabel}>Assignment:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Task name"
                 name="name"
                 value={name}
                 onChange={handleChange}
+                className={styles.TaskInput}
               />
             </Form.Group>
 
             {errors.deadline?.map((message, idx) => (
-              <Alert key={idx}>
+              <Alert key={idx} className={formStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}
-            <div>
+            <div className={`${styles.Group} ${styles.DeadlineGroup}`}>
               <label htmlFor="achieve_by">Achieve By:</label>
               <input
                 type="date"
@@ -153,6 +157,7 @@ const AssignmentsActionCreate = (props) => {
                 name="achieve_by"
                 value={achieve_by}
                 onChange={handleChange}
+                className={styles.DateInput}
               />
             </div>
             <div>
@@ -160,7 +165,7 @@ const AssignmentsActionCreate = (props) => {
                 refinement.results.length>0 ? (
                   <>
                     {errors.refine?.map((message, idx) => (
-                      <Alert key={idx}>
+                      <Alert key={idx} className={formStyles.ErrorAlert}>
                         {message}
                       </Alert>
                     ))}
@@ -176,7 +181,7 @@ const AssignmentsActionCreate = (props) => {
                   <p>No refinement areas present. Saving assignment will be added to miscellaneous area.</p>
                 )
               ): (
-                <div>
+                <div className={styles.SpinnerContainer}>
                   <Spinner animation="border" />
                   <p>Checking refine area</p>
                 </div>
@@ -188,7 +193,7 @@ const AssignmentsActionCreate = (props) => {
                   userGoals.results.length>0 ? (
                     <>
                       {errors.userGoal?.map((message, idx) => (
-                        <Alert key={idx}>
+                        <Alert key={idx} className={formStyles.ErrorAlert}>
                           {message}
                         </Alert>
                       ))}
@@ -208,7 +213,7 @@ const AssignmentsActionCreate = (props) => {
                       )
                   )
                 ): (
-                  <div>
+                  <div className={styles.SpinnerContainer}>
                     <Spinner animation="border" />
                     <p>Checking for assignments</p>
                   </div>
@@ -216,16 +221,16 @@ const AssignmentsActionCreate = (props) => {
               ) : null}
             </div>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx}>
+              <Alert key={idx} className={formStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}
           </div>
-          <div>
-            <Button onClick={handleFormClose}>
+          <div className={styles.Buttons}>
+            <Button className={btnStyles.Button} onClick={handleFormClose}>
                 Cancel
             </Button>
-            <Button  type="submit">
+            <Button className={btnStyles.Button} type="submit">
               Save
             </Button>
           </div>

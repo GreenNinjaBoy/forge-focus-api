@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
 import { Spinner } from 'react-bootstrap';
+import styles from '../../styles/Assignments.module.css'
 import IndividualAssignment from './IndividualAssignment';
 import AssignmentCreate from './AssignmentCreate';
 
@@ -55,7 +56,7 @@ const AssignmentList = ( props ) => {
 
   return (
     <div>
-      <div>
+      <div className={styles.TaskListContainer}>
         {hasLoaded ? (
           assignments.results.length ? (
             assignments.results.map(assignment => (
@@ -68,7 +69,7 @@ const AssignmentList = ( props ) => {
           )
         ) : (
             <div>
-              <Spinner animation="border" />
+              <Spinner className={styles.SpinnerContainer} animation="border" />
               <p>Loading Assignments</p>
             </div>
         )}

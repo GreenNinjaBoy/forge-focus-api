@@ -1,0 +1,57 @@
+.title {
+    display: none;
+  }
+  
+  .Buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .Input {
+    line-height: 30px;
+    padding: 0px 10px 0px 10px;
+  }
+  
+  .DateInput {
+    width: 150px;
+  }
+  
+  .FormLabel {
+    line-height: 40px;
+    margin: 0px;
+  }
+  
+  .ExtraFields {
+    display: flex;
+  }
+  
+  .Date {
+    margin-right: 30px;
+  }
+  
+  .CreateContainer {
+    border-color: #007926;  
+    border-bottom: solid;
+    border-width: 1px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  @media screen and (min-width:576px){
+    .Group {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media screen and (min-width:768px){
+    .CreateContainer {
+      padding: 10px;
+    }
+    .title {
+      display: block;
+      color: #3c159c;
+      font-weight: 700;
+    }
+  }

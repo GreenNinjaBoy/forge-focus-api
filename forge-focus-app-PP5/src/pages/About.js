@@ -1,16 +1,15 @@
 import React from 'react';
 import styles from '../styles/About.module.css';
-import previewImage from '../assets/prieviewimage.webp';
 import {Carousel} from 'react-bootstrap'
 
 const About = () => {
     return (
-        <div className={styles.carouselItem}>
+        <div className={styles.Background}>
             <Carousel>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100 h-100"
-                        src={previewImage}
+                        className="d-block w-100"
+                        src="./assets/prieviewimage.webp"
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -21,7 +20,7 @@ const About = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={previewImage}
+                        src="./assets/prieviewimage.webp"
                         alt="Second slide"
                     />
                     <Carousel.Caption>
@@ -34,7 +33,7 @@ const About = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={previewImage}
+                        src="./assets/prieviewimage.webp"
                         alt="Third slide"
                     />
                     <Carousel.Caption>
@@ -46,7 +45,7 @@ const About = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={previewImage}
+                        src="./assets/prieviewimage.webp"
                         alt="Fourth Slide"
                     />
                     <Carousel.Caption>

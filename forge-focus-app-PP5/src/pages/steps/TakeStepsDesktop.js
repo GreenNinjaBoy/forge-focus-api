@@ -27,7 +27,7 @@ const TakeStepsDesktop = (props) => {
       const updateSearchList = async () => {
         try {
           setHasLoaded(false);
-          const {data} = await axiosReq.get(`/assingments/?search=${query}`);
+          const {data} = await axiosReq.get(`/assingment/?search=${query}`);
           setSearchList(data);
           setHasLoaded(true);
         }  catch(err) {
@@ -50,7 +50,7 @@ const TakeStepsDesktop = (props) => {
   useEffect(() => {
     const changeActiveAssignmentsOrder = async () => {
       try {
-        const {data} = await axiosReq.get(`/assignments/${filter}`);
+        const {data} = await axiosReq.get(`/assignment/${filter}`);
         setActiveAssignments(data);
         setHasLoaded(true);
       }  catch(err) {

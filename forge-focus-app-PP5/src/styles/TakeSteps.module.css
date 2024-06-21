@@ -1,0 +1,144 @@
+.ButtonContainer {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    max-width: 400px;
+  }
+  
+  .ExtraInfo {
+    display: none;
+  }
+  
+  .SpinnerContainer {
+    display: flex;
+    margin: 5px;
+  }
+  
+  .SpinnerContainer > p {
+    margin-left: 10px;
+  }
+  
+  .ModalTitle {
+    color: #3c159c;
+  }
+  
+  .FilterLabel {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-right: 5px;
+    color: #9c1576;
+  }
+  
+  .FilterBox {
+    width: 100px;
+    font-size: 0.9rem;
+  }
+  
+  .SearchInput {
+    border-color: #007926;  
+    border: solid;
+    border-width: 1px;
+    border-radius: 2px;
+    width: 115px;
+    font-size: 0.9rem;
+    height: 20px;
+  }
+  
+  /* Mobile Specific */
+  
+  .Accordion {
+    border-color: #007926;  
+    border: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    width: 90vw;
+    max-width: 500px;
+  }
+  
+  .AccordionBody {
+    padding: 0;
+  }
+  
+  .FunctionContainer {
+    border-color: #007926;  
+    border-bottom: solid;
+    border-width: 1px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  
+  /* Desktop Specific */
+  
+  .MainContainer {
+    padding: 0;
+    width: 95vw;
+    height: 65vh;
+    max-width: 1200px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow: auto;
+  }
+  
+  .Column {
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    overflow: auto;
+    min-width: 300px;
+  }
+  
+  .MiddleColumn {
+    border-color: #007926;  
+    border-right: solid;
+    border-left: solid;
+    border-width: 2px;
+  }
+  
+  .TitleContainer {
+    border-color: #007926;  
+    border-bottom: solid;
+    border-width: 1px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .TitleContainer > h2 {
+    color: #3c159c;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .OrderBy {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    margin: 0;
+  }
+  
+  .TasksContainer {
+    overflow: auto;
+  }
+  
+  .AddPadding {
+    padding: 5px;
+  }
+  
+  @media screen and (min-width:768px){
+    .ExtraInfo {
+      display: inline;
+    }
+    .Filter {
+      position: absolute;
+      right: 2px;
+      bottom: -4px;
+    }
+    .SearchContainer {
+      position: absolute;
+      left: 2px;
+      bottom: 4px;
+    }
+  }

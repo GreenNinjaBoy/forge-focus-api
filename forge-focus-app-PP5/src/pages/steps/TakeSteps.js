@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useCheckedUser, useCurrentUser } from '../../context/CurrentUserContext.js';
 import { Button, Modal } from 'react-bootstrap';
+import styles from '../../styles/TakeSteps.module.css';
+import pageStyles from '/../../styles/Page.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import TakeStepsMobile from './TakeStepsMobile.js'
 import TakeStepsDesktop from './TakeStepsDesktop.js'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults.js';
@@ -25,7 +28,7 @@ const TakeSteps = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const {data} = await axiosReq.get('/assignments/');
+        const {data} = await axiosReq.get('/assignment/');
         setActiveAssignments(data);
         setHasLoaded(true);
       } catch(err) {
@@ -67,7 +70,7 @@ const TakeSteps = () => {
       for (const assignment of achievedList) {
         try {
           const { id } = assignment;
-          await axiosRes.delete(`/assignments/${id}`)
+          await axiosRes.delete(`/assignment/${id}`)
           setGlobalSuccessMessage("You have reset your steps board. All assignments that were complete have been deleted and everything else returned to the backlog.");
           setShowGlobalSuccess(true);
           const activeList = activeAssignments.results;
@@ -88,7 +91,7 @@ const TakeSteps = () => {
     if (todayList.length > 0){
       for (const assignment of todayList) {
         const { id } = assignment;
-        const {data} = await axiosReq.patch(`/assignments/${id}`, { today: false });
+        const {data} = await axiosReq.patch(`/assignment/${id}`, { today: false });
         setGlobalSuccessMessage("You have reset your steps board. All assignments that were complete have been deleted and everything else returned to the backlog.");
         setShowGlobalSuccess(true);
         const activeList = activeAssignments.results;
@@ -107,24 +110,24 @@ const TakeSteps = () => {
   };
 
   return (
-    <div>
+    <div className={pageStyles.PageContainer}>
       {checkedUser ? (
         <>
-          <div>
-            <h1>Taking Steps<span>{currentUser.username}</span></h1>
+          <div className={pageStyles.Title}>
+            <h1>Ready to Add in Steps?<span className={styles.ExtraInfo}>{currentUser.username}</span></h1>
           </div>
-          <div>
-            <Button onClick={handleOpenForm}>
+          <div className={styles.ButtonContainer}>
+            <Button className={btnStyles.Button} onClick={handleOpenForm}>
               Add <span>additional </span>assignments
             </Button>
-            <Button onClick={handleResetRequest}>
+            <Button className={btnStyles.Button} onClick={handleResetRequest}>
              Reset 
             </Button>
           </div>
 
           <Modal show={showModal} onHide={handleModalClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Reset</Modal.Title>
+              <Modal.Title className={styles.ModalTitle}>Reset</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <p>Are you sure you wish to reset "Taking Steps"?</p>
@@ -148,7 +151,7 @@ const TakeSteps = () => {
             <AssignmentsActionCreate activeAssignments={activeAssignments} setActiveAssignments={setActiveAssignments} setShowForm={setShowForm}/>
           </Modal>
 
-          <div>
+          <div className={styles.ModalTitle}>
             <TakeStepsMobile 
               hasLoaded={hasLoaded}
               activeAssignments={activeAssignments}
@@ -159,7 +162,7 @@ const TakeSteps = () => {
               setHasLoaded={setHasLoaded}
             />
           </div>
-          <div>
+          <div className={pageStyles.DesktopOnly}>
             <TakeStepsDesktop 
               hasLoaded={hasLoaded}
               activeAssignments={activeAssignments}

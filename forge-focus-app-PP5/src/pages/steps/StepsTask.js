@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../../styles/StepsTask.module.css';
 import {axiosReq} from '../../api/axiosDefaults';
 import {Link} from 'react-router-dom/cjs/react-router-dom';
 import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
@@ -27,7 +28,7 @@ const StepsTask = (props) => {
     const checkbox = event.target;
     if (checkbox.checked) {
       try {
-        const {data} = await axiosReq.patch(`/assignments/${id}`, {today: true});
+        const {data} = await axiosReq.patch(`/assignment/${id}`, {today: true});
         setGlobalSuccessMessage("Assignment moved into today");
         setShowGlobalSuccess(true);
         const activeList = activeAssignments.results;
@@ -45,7 +46,7 @@ const StepsTask = (props) => {
       }
     } else {
       try {
-        const {data} = await axiosReq.patch(`/assignments/${id}`, {today: false});
+        const {data} = await axiosReq.patch(`/assignment/${id}`, {today: false});
         setGlobalSuccessMessage("Assignment removed from today");
         setShowGlobalSuccess(true);
         const activeList = activeAssignments.results;
@@ -67,7 +68,7 @@ const StepsTask = (props) => {
     const checkbox = event.target;
     if (checkbox.check) {
       try {
-        const {data} = await axiosReq.patch(`/assignments/${id}`, { achieved: true});
+        const {data} = await axiosReq.patch(`/assignment/${id}`, { achieved: true});
         setGlobalSuccessMessage("You have achieved your assignment well done!!");
         setShowGlobalSuccess(true);
         const activeList = activeAssignments.results;
@@ -85,7 +86,7 @@ const StepsTask = (props) => {
       }
     } else {
       try {
-        const {data} = await axiosReq.patch(`/assignments/${id}`, { achieved: false});
+        const {data} = await axiosReq.patch(`/assignment/${id}`, { achieved: false});
         setGlobalSuccessMessage("Assignment has been reset!");
         setShowGlobalSuccess(true);
         const activeList = activeAssignments.results;
@@ -136,33 +137,33 @@ const StepsTask = (props) => {
     if (refine) {
       return (
         <Link to={`/refine/${refine}`}>
-          <img src={image} alt='refine'/>
+          <img className={styles.Image} src={image} alt='refine'/>
         </Link>
       )
     } else {
       return (
         <Link to={`/miscellaneous`}>
-          <img src={image} alt='refine' />
+          <img className={styles.Image} src={image} alt='refine' />
         </Link>
       )
     }
   };
   return (
-    <div>
-      <div>
+    <div className={styles.TaskContainer}>
+      <div className={styles.ImageContainer}>
         <LinkContext/>
       </div>
-      <div>
+      <div className={styles.DetailsContainer}>
         {achieved ? (
-          <h3>{name}</h3>
+          <h3 className={styles.DetailsContainer}>{name}</h3>
         ) : (
           <h3>{name}</h3>
         )}
-        <p>{context}</p>
+        <p className={styles.TaskContext}>{context}</p>
         <AchieveByContext/>
         <UserGoalAchiveByContext/>
       </div>
-      <div>
+      <div className={styles.CheckboxContainer}>
         {type==="active" ? (
           <>
           <input type="checkbox" id={`today-${id}`} name="today" onChange={handleTodayToggle} checked={today} />

@@ -33,7 +33,7 @@ const UserGoalEdit = (props) => {
   const [userGoalData, setUserGoalData] = useState ({
     newTitle: title,
     newDescription: description,
-    newValue, value,
+    newValue: value,
     newCriteria: criteria,
     newAchieve_By: convertedDate(),
   });

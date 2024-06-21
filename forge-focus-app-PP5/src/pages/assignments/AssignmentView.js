@@ -1,4 +1,5 @@
 import React from 'react'
+import assignmentStyles from '../../styles/Assignments.module.css'
 import { Dropdown } from 'react-bootstrap'
 
 const AssignmentView = ( props ) => {
@@ -28,21 +29,21 @@ const AssignmentView = ( props ) => {
   }
 
   return (
-    <div>
+    <div className={assignmentStyles.TaskContainer}>
 
-      <Dropdown drop="left">
+      <Dropdown className={assignmentStyles.Choice}  drop="left">
         <Dropdown.Toggle as={Icon} />
-        <Dropdown.Menu  popperConfig={{ strategy: "fixed" }}>
-          <Dropdown.Item  onClick={handleEdit} aria-label="edit" >
+        <Dropdown.Menu className={assignmentStyles.ChoiceMenu} popperConfig={{ strategy: "fixed" }}>
+          <Dropdown.Item className={assignmentStyles.ChoiceOption}  onClick={handleEdit} aria-label="edit" >
             Edit Assignment
           </Dropdown.Item>
-          <Dropdown.Item onClick={handleDelete} aria-label="edit" >
+          <Dropdown.Item className={assignmentStyles.ChoiceOption} onClick={handleDelete} aria-label="edit" >
             Delete Assignment
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
-      <div>
+      <div className={assignmentStyles.TaskDetails}>
         <h4>{name}</h4>
         {achieve_by_info ? (
           <p>{achieve_by_info}</p>
