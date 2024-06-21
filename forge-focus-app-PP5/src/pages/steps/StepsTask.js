@@ -136,13 +136,13 @@ const StepsTask = (props) => {
     if (refine) {
       return (
         <Link to={`/refine/${refine}`}>
-          <img alt='refine'/>
+          <img src={image} alt='refine'/>
         </Link>
       )
     } else {
       return (
         <Link to={`/miscellaneous`}>
-          <img alt='refine' />
+          <img src={image} alt='refine' />
         </Link>
       )
     }

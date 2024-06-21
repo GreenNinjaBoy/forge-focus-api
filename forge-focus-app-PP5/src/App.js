@@ -11,7 +11,6 @@ import Signup from './pages/auth/Signup';
 import Organise from './pages/organise/Organise';
 import Miscellaneous from './pages/organise/Miscellaneous';
 import Refine from './pages/refine/Refine';
-import Refinement from './pages/refine/RefineCreate';
 import TakeSteps from './pages/steps/TakeSteps';
 import NotFound from './NotFound';
 import { useEffect, useState } from 'react';

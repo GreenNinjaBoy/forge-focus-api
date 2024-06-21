@@ -80,7 +80,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
                     if today_day == deadline_day:
                         return f'User Goal due Tomorrow {easy_date}'
                     else:
-                        return f'Gaol due {easy_date}'
+                        return f'Goal due {easy_date}'
                 else:
                     return f'Goal due {easy_date}'
             else:

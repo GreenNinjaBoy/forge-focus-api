@@ -111,7 +111,7 @@ const TakeSteps = () => {
       {checkedUser ? (
         <>
           <div>
-            <h1>Taking Steps<span></span></h1>
+            <h1>Taking Steps<span>{currentUser.username}</span></h1>
           </div>
           <div>
             <Button onClick={handleOpenForm}>
