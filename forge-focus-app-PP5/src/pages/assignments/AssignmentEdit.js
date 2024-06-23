@@ -76,7 +76,7 @@ const AssignmentEdit = (props) => {
       formData.append('achieve_by', djangoDate);
     }
     try {
-      const {data} = await axiosReq.put(`/assignments/${id}`, formData);
+      const {data} = await axiosReq.put(`/assignment/${id}`, formData);
       setGlobalSuccessMessage("Assignment Edit Successful");
       setShowGlobalSuccess(true);
       const assignmentIndex = assignmentList.findIndex(assignment => assignment.id === id);

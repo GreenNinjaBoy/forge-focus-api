@@ -28,9 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
-        if 'DEV' in os.environ else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication'
+        # if 'DEV' in os.environ else 
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -91,8 +92,8 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'dj_rest_auth.registration',
+    # 'allauth.socialaccount',
     'corsheaders',
     'assignment',
     'refine',

@@ -26,7 +26,7 @@ const AssignmentDelete = (props) => {
 
     const handleDelete = async () => {
       try {
-        await axiosRes.delete(`/assingments/${id}`);
+        await axiosRes.delete(`/assingment/${id}`);
         setGlobalSuccessMessage("Assignment Deleted");
         setShowGlobalSuccess(true);
         const assignmentIndex = assignmentList.findIndex(assignment => assignment.id === id);

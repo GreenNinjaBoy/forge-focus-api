@@ -12,10 +12,3 @@ export const axiosReq = axios.create();
 
 // This line of code intercepts the response
 export const axiosRes = axios.create();
-
-axiosReq.interceptors.request.use(function (config) {
-    // Assuming you store your token in localStorage; adjust as needed
-    const token = localStorage.getItem('token');
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
-    return config;
-  });

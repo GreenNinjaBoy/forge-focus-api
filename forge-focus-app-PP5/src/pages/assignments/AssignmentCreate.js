@@ -52,7 +52,7 @@ const AssignmentCreate = ( props) => {
       formData.append('achieve_by', djangoDate);
     }
     try {
-      const {data} = await axiosReq.post(`/assignments/`, formData);
+      const {data} = await axiosReq.post(`/assignment/`, formData);
       setGlobalSuccessMessage("New assignment created");
       setShowGlobalSuccess(true);
       setAssignments(

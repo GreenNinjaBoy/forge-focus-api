@@ -16,7 +16,7 @@ const AssignmentList = ( props ) => {
     const fetchAssignments = async () => {
       if (type==="daytoday") {
         try {
-          const {data} = await axiosReq.get(`/assignments/?refine=${refine_id}&usergoal=None`);
+          const {data} = await axiosReq.get(`/assignment/?refine=${refine_id}&usergoal=None`);
           setAssignments(data);
           setHasLoaded(true);
         } catch(err) {
@@ -32,7 +32,7 @@ const AssignmentList = ( props ) => {
         }
       } else if (type==="miscellaneous") {
         try {
-          const {data} = await axiosReq.get('/assignments/?refine=None');
+          const {data} = await axiosReq.get('/assignment/?refine=None');
           setAssignments(data);
           setHasLoaded(true);
         } catch(err) {
