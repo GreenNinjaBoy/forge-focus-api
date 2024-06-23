@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import { axiosReq } from '../../api/axiosDefaults'
-import { Button, Spinner  } from 'react-bootstrap'
-import UserGoalsView from './UserGoalsView'
-import UserGoalCreate from './UserGoalCreate'
-import UserGoalEdit from './UserGoalEdit'
-import UserGoalDelete from './UserGoalDelete'
-import AssignmentList from '../assignments/AssignmentList'
+import React, {useEffect, useState} from 'react';
+// import currentUser from '../../context/CurrentUserContext';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/UserGoal.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
+import { Button, Spinner  } from 'react-bootstrap';
+import UserGoalsView from './UserGoalsView';
+import UserGoalCreate from './UserGoalCreate';
+import UserGoalEdit from './UserGoalEdit';
+import UserGoalDelete from './UserGoalDelete';
+import AssignmentList from '../assignments/AssignmentList';
 
 const UserGoalSection = (props) => {
   const {
@@ -22,6 +25,7 @@ const UserGoalSection = (props) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [currentUserGoal, setCurrentUserGoal] = useState();
   const [userGoalState, setUserGoalState] = useState("view");
+  // const [username] = currentUser;
 
   const handleCreate = () => {
     setUserGoalState("create");
@@ -74,15 +78,16 @@ const UserGoalSection = (props) => {
     };
 
     return (
-      <div
+      <div className={styles.GoalTab}
         style={{
           color: eventKey===userGoal_id ? '#3c159c' : 'black',
           fontWeight: eventKey===userGoal_id ? 'bold' : 'normal'}}
           onClick={openUserGoal}
-          ariel-label={eventKey===userGoal_id ? 'Click to open your goal' : 'Click to close your goal'}
+          ariel-label={eventKey===userGoal_id ? 'Click to open Users Goals' : 'Click to close Users goals'}
+          // ariel-label={`${eventKey === userGoal_id ? 'Click to open' : 'Click to close'} ${username}'s Goals`}
           >
             {children}
-            <div>
+            <div className={styles.TabControl}>
               {eventKey=== userGoal_id ? (
                 <i className='fa-solid fa-angle-right'></i>
               ): (
@@ -98,18 +103,18 @@ const UserGoalSection = (props) => {
       return currentUserGoal ? (
         <>
         <UserGoalsView {...currentUserGoal} userGoals={usergoals} setCurrentUserGoal={setCurrentUserGoal} setUserGoalState={setUserGoalState} />
-        <div>
+        <div className={styles.NestedTasks}>
           <h3>Assignments for your goal</h3>
           <AssignmentList refine_id={refine_id} userGoal_id={userGoal_id} type='goal'/>
         </div>
         </>
       ) : (
         usergoals.results.length>0 ? (
-          <div>
+          <div className={styles.GoalPlusMessage}>
             Click to view goal and any nested assignments.
           </div>
         ) : (
-          <div>
+          <div className={styles.GoalPlusMessage}>
             Create a new goal
           </div>
         )
@@ -124,8 +129,8 @@ const UserGoalSection = (props) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className={styles.GoalSection}>
+      <div className={styles.GoalList}>
         <h3>Goal List</h3>
         <p>Select a goal to view more</p>
         {hasLoaded ? (
@@ -136,25 +141,25 @@ const UserGoalSection = (props) => {
               </ContextAwareToggle>
             ))
           ) : (
-            <div>
+            <div className={styles.GoalTab}>
               <p>No goals yet</p>
             </div>
           )
         ) : (
-          <div>
+          <div className={styles.SpinnerContainer}>
             <Spinner animation="border" />
             <p>We are just loading your goals</p>
           </div>
         )}
-        <Button onClick={handleCreate}>
+        <Button className={`${btnStyles.Button} ${styles.Button}`}  onClick={handleCreate}>
           <div>Add a goal</div>
         </Button>
       </div>
-      <div>
+      <div className={styles.GoalPlus}>
         {hasLoaded ? (
           <UserGoalContext />
         ) : (
-          <div>
+          <div className={styles.SpinnerContainer}>
             <Spinner animation="border" />
             <p>Just loading ...</p>
           </div>

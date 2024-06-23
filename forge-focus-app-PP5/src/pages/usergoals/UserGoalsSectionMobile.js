@@ -1,4 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
+import accStyles from '../../styles/Accordion.module.css';
+import styles from '../../styles/UserGoal.module.css';
 import { Accordion, Card, Spinner} from 'react-bootstrap';
 import { useAccordionToggle, AccordionContext } from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
@@ -41,7 +43,8 @@ const UserGoalsSectionMobile = (props) => {
     );
     const isCurrentEventKey = currentEventKey === eventKey;
     return (
-      <div
+      
+      <div className={accStyles.Header}
         style={{
           color: isCurrentEventKey ? '#3c159c' : 'black',
           fontweight: isCurrentEventKey ? 'bold' : 'normal'}}
@@ -68,7 +71,7 @@ const UserGoalsSectionMobile = (props) => {
       ) : (
         <Card>
           <Card.Header>
-            <div>
+            <div className={styles.SpinnerContainer}>
               <Spinner animation="border" />
               <p>We are just loading your goals</p>
             </div>

@@ -55,7 +55,7 @@ const AssignmentsActionCreate = (props) => {
       if (refine!== 'misc') {
         const fetchUserGoals = async () => {
           try {
-            const {data} = await axiosReq.get(`/usergoals/?refine_id=${refine}`);
+            const {data} = await axiosReq.get(`/goals/?refine_id=${refine}`);
             setUserGoals(data);
             setHasLoadedGoals(true);
           } catch(err) {

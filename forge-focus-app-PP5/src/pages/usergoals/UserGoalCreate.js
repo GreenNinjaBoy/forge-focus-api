@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
+import styles from '../../styles/UserGoalCreate.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import formStyles from '../../styles/Form.module.css';
 import {axiosReq} from '../../api/axiosDefaults';
 import {useSetGlobalSuccessMessage, useSetShowGlobalSuccess} from '../../context/GlobalMessageContext';
 
@@ -103,33 +106,34 @@ const UserGoalCreate = (props) => {
   };
 
   return (
-    <div>
-      <h3>Create a New Goal</h3>
+    <div className={styles.CreateContainer}>
+      <h3 className={styles.title}>Create a New Goal</h3>
       <Form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.MainForm}>
 
           {errors.title?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="user-goal-title">
-            <Form.Label>Goal</Form.Label>
+          <Form.Group controlId="user-goal-title" className={styles.Group}>
+            <Form.Label className={styles.FormLabel}>Goal</Form.Label>
             <Form.Control
               type="text"
               placeholder='What shall we call your Goal?'
               name='title'
               value={title}
               onChange={handleChange}
+              className={styles.Input}
               />
           </Form.Group>
 
           {errors.description?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="user-goal-description">
+          <Form.Group controlId="user-goal-description" className={styles.Group}>
             <Form.Label>Goal Description:</Form.Label>
             <Form.Control
               type="text"
@@ -137,15 +141,16 @@ const UserGoalCreate = (props) => {
               name="description"
               value={description}
               onChange={handleChange}
+              className={styles.Input}
             />
           </Form.Group>
 
           {errors.value?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="user-goal-value">
+          <Form.Group controlId="user-goal-value" className={styles.Group}>
             <Form.Label>Goal Value:</Form.Label>
             <Form.Control
               type="text"
@@ -153,52 +158,55 @@ const UserGoalCreate = (props) => {
               name="value"
               value={value}
               onChange={handleChange}
+              className={styles.Input}
             />
           </Form.Group>
 
           {errors.criteria?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="user-goal-criteria">
-            <Form.Label>Goal Criteria:</Form.Label>
+          <Form.Group controlId="user-goal-criteria" className={styles.Group}>
+            <Form.Label className={styles.FormLabel}>Goal Criteria:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Criteria to be met to achieve this goal?"
               name="criteria"
               value={criteria}
               onChange={handleChange}
+              className={styles.Input}
             />
           </Form.Group>
 
           {errors.deadline?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
 
-          <Form.Group controlId="user-goal-achieve-by">
-            <Form.Label> Goal Achieved by:</Form.Label>
+          <Form.Group controlId="user-goal-achieve-by" className={styles.Group}>
+            <Form.Label className={styles.FormLabel}> Goal Achieved by:</Form.Label>
             <Form.Control
               type="date"
               name="achieve_by"
               value={achieve_by}
               onChange={handleChange}
+              className={styles.DateInput}
             />
           </Form.Group>
 
           {errors.non_field_errors?.map((message, idx) => (
-            <Alert key={idx}>
+            <Alert key={idx} className={formStyles.ErrorAlert}>
               {message}
             </Alert>
           ))}
         </div>
-        <div>
-          <Button onClick={handleCancel}>
+        <div className={styles.Buttons}>
+          <Button className={btnStyles.Button} onClick={handleCancel}>
               Cancel Goal
           </Button>
-          <Button type="submit">
+          <Button className={btnStyles.Button} type="submit">
             Save Goal
           </Button>
         </div>

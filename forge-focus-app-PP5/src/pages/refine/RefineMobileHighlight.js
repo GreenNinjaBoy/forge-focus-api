@@ -18,7 +18,7 @@ const RefineMobileHighlight = (props) => {
   useEffect(() => {
     const fetchUserGoals = async () => {
       try {
-        const {data} = await axiosReq.get(`/usergoals/?refine_id=${id}`);
+        const {data} = await axiosReq.get(`/goals/?refine_id=${id}`);
         setUserGoals(data);
         setHasLoaded(true);
       } catch(err) {

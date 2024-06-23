@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import styles from '../../styles/UserGoal.module.css';
 
 const UserGoalsView = (props) => {
   const {
@@ -22,22 +23,22 @@ const UserGoalsView = (props) => {
 
   return (
     <>
-      <div>
+      <div className={styles.GoalViewContainer}>
         <h3>{goaltitle}</h3>
-        <p><span>Description:</span>{description}</p>
-        <p><span>Value:</span>{value}</p>
-        <p><span>Success Criteria:</span>{criteria}</p>
-        <div>
+        <p><span className={styles.label}>Description:</span>{description}</p>
+        <p><span className={styles.label}>Value:</span>{value}</p>
+        <p><span className={styles.label}>Success Criteria:</span>{criteria}</p>
+        <div className={styles.ExtraDetails}>
           {achieve_by ? (
-            <p><span>Achieve by:</span>{achieve_by}</p>
+            <p><span className={styles.label}>Achieve by:</span>{achieve_by}</p>
           ) : (
             <p>No deadline</p>
           )}
         </div>
         {deadline_near && (
-          <p>DEADLINE NEAR only {days_remaining} days remaining</p>
+          <p className={styles.DeadlineWarning}>ACHIEVE BY DATE NEAR!! only {days_remaining} days remaining</p>
         )}
-        <div>
+        <div className={styles.IconContainer}>
           <button onClick={handleEdit} aria-label="Click to edit focus">
             <i className="fa-solid fa-pen-to-square"></i>
           </button>
