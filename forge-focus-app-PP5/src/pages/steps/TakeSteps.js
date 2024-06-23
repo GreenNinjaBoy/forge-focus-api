@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCheckedUser, useCurrentUser } from '../../context/CurrentUserContext.js';
 import { Button, Modal } from 'react-bootstrap';
 import styles from '../../styles/TakeSteps.module.css';
-import pageStyles from '/../../styles/Page.module.css';
+import pageStyles from '../../styles/Page.module.css';
 import btnStyles from '../../styles/Button.module.css';
 import TakeStepsMobile from './TakeStepsMobile.js'
 import TakeStepsDesktop from './TakeStepsDesktop.js'
