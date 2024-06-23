@@ -67,14 +67,8 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOSTS'),
     #'testserver',
     'localhost',
-    # '127.0.0.1',
-    # '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu111.gitpod.io',
-    # '8000-greenninjab-forgefocusa-6mpboeyj5yq.ws-eu114.gitpod.io',
-    # '.herokuapp.com',
-    # 'https://3000-greenninjab-forgefocusa-28gw13bnxx9.ws.codeinstitute-ide.net/',
-    # '8000-greenninjab-forgefocusa-fla8hc5ilxv.ws.codeinstitute-ide.net',
-    # 'https://greenninjaboy.github.io/forge-focus-app-PP5/',
-    # 'https://github.com/GreenNinjaBoy/forge-focus-app-PP5.git',
+    '.herokuapp.com',
+    
 
                 ]
 
@@ -162,6 +156,7 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
+    print('connected')
 
 
 
