@@ -123,7 +123,7 @@ else:
          "https://forge-focus-pp5-467431862e16.herokuapp.com",
      ]
 
-CORS_ALLOWED_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'forge_focus.urls'
 
