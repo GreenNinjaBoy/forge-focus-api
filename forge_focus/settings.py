@@ -27,12 +27,11 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication'
-        # if 'DEV' in os.environ else 
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -40,10 +39,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 30,
     'DATETIME_FORMAT': '%d %b %Y',
 }
-
 if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
-        'rest_framework.renderers.JSONRenderer',
+    REST_FRAMEWORK['DEFAULT_RENDERE_CLASSES'] = [
+        'rest_framework.rendererd.JSONRenderer',
     ]
 
 REST_USE_JWT = True
@@ -121,8 +119,8 @@ if 'CLIENT_ORIGIN' in os.environ:
          os.environ.get('CLIENT_ORIGIN')
      ]
 else:
-     CORS_ALLOWED_ORIGIN_REGEXES = [
-         r"^https://.*\.gitpod\.io$",
+     CORS_ALLOWED_ORIGINS = [
+         "https://forge-focus-pp5-467431862e16.herokuapp.com",
      ]
 
 CORS_ALLOWED_CREDENTIALS = True
