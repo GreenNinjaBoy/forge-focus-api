@@ -16,7 +16,7 @@ class Refine(models.Model):
     priority = models.IntegerField(blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
     image = models.ImageField(
-        upload_to='images/', default='../default-designer_cae82s', blank=True
+        upload_to='images/', default='../default_post_pdrfdn', blank=True
     )
 
 
