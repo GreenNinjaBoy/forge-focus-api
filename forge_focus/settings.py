@@ -91,7 +91,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
-    # 'allauth.socialaccount',
+    'allauth.socialaccount',
     'corsheaders',
     'assignment',
     'refine',
@@ -130,7 +130,7 @@ ROOT_URLCONF = 'forge_focus.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'staticfiles', 'build')],
+        'DIRS':[],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
