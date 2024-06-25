@@ -40,9 +40,9 @@ class UserGoalsSerializer(serializers.ModelSerializer):
         than 7 days, or false if their is no deadline or the deadline is
         more than 7 days away.
         """
-        days_remaining = self.get_time_remaining(obj)
-        if days_remaining is not None:
-            if days_remaining <= 7:
+        time_remaining = self.get_time_remaining(obj)
+        if time_remaining is not None:
+            if time_remaining <= 7:
                 return True
             else:
                 return False
