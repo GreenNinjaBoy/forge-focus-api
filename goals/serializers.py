@@ -28,8 +28,8 @@ class UserGoalsSerializer(serializers.ModelSerializer):
         if future_deadline:
             today_naive = datetime.now()
             today_aware = today_naive.replace(tzinfo=timezone.utc)
-            days_remaining = (future_deadline - today_aware).days
-            return days_remaining
+            time_remaining = (future_deadline - today_aware).days
+            return time_remaining
         else:
             return None
             
