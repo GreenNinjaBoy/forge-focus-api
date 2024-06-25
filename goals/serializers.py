@@ -1,6 +1,6 @@
 from .models import UserGoals
 from rest_framework import serializers
-from datetime import datetime, timezone
+from django.utils import timezone
 
 class UserGoalsSerializer(serializers.ModelSerializer):
     """
@@ -26,8 +26,7 @@ class UserGoalsSerializer(serializers.ModelSerializer):
         """
         future_deadline = obj.achieve_by
         if future_deadline:
-            today_naive = datetime.now()
-            today_aware = today_naive.replace(tzinfo=timezone.utc)
+            today_aware = timezone.now()
             time_remaining = (future_deadline - today_aware).days
             return time_remaining
         else:
