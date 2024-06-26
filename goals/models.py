@@ -28,7 +28,7 @@ class UserGoals(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
-    achieve_by = models.DateField(null=True, blank=True)
+    achieve_by = models.DateTimeField(null=True, blank=True)
     goal_title = models.CharField(max_length=50)
     goal_details = models.CharField(max_length=150, blank=True, null=True)
     value = models.CharField(max_length=150, blank=True, null=True)

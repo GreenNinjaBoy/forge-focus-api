@@ -37,7 +37,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 30,
-    'DATETIME_FORMAT': '%d %b %Y',
+    'DATETIME_FORMAT': '%d %b %Y %H:%M:%S'
 }
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERE_CLASSES'] = [
@@ -60,7 +60,7 @@ REST_AUTH_REGISTER_PERMISSION_CLASSES = ['rest_framework.permissions.AllowAny',]
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEBUG' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOSTS'),

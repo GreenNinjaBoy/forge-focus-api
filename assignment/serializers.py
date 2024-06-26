@@ -27,25 +27,20 @@ class AssignmentSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
 
     def get_achieve_by_info(self, obj):
-        """
-        This function will generate a
-        new field if the assignment deadline
-        is less than two days away
-        """
+
         future_deadline = obj.deadline
         if future_deadline:
-            today_naive = datetime.now()
-            today_aware = today_naive.replace(tzinfo=timezone.utc)
+            today_aware = datetime.now(timezone.utc)
             days_remaining = (future_deadline - today_aware).days
-            easy_date = future_deadline.strtime('%d/%m/%y')
+            easy_date = future_deadline.strftime('%d/%m/%y')
             if days_remaining < -1:
                 return f'Your Assignment is Overdue!! {easy_date}'
             elif days_remaining < 3:
                 today = date.today()
                 today_day = today.day
                 deadline_day = future_deadline.day
-                if today_day == dealine_day:
-                    return f'Your Assingment is due today! {easy_date}'
+                if today_day == deadline_day:  # Corrected typo
+                    return f'Your Assignment is due today! {easy_date}'
                 tomorrow = today + timedelta(days=1)
                 tomorrow_day = tomorrow.day
                 if deadline_day == tomorrow_day:
@@ -55,36 +50,26 @@ class AssignmentSerializer(serializers.ModelSerializer):
             else:
                 return f'Assignment due {easy_date}'
         else:
-            return None 
+            return None
 
     def get_achieve_by_info_goal(self, obj):
-        """
-        This function will generate a new
-        field containing information if 
-        the linked goal is near
-        """
-        if obj.goal:
-            if obj.goal.deadline:
-                goal_deadline = obj.goal.deadline
-                today_naive = datetime.now()
-                today_aware = today_naive.replace(tzinfo=timezone.utc)
-                days_remaining = (goal_deadline - today_aware).days
-                easy_date = goal.deadline.strftime('%d/%m/%y')
-
-                if days_remaining < -1:
-                    return f'Your Goal is Overdue!!! {easy_date}'
-                elif days_remaining < 3:
-                    today = date.today()
-                    today_day = today.date
-                    deadline_day = goal_deadline.day
-                    if today_day == deadline_day:
-                        return f'User Goal due Tomorrow {easy_date}'
-                    else:
-                        return f'Goal due {easy_date}'
+        if obj.goal and obj.goal.achieve_by:
+            goal_achieve_by = obj.goal.achieve_by
+            today_aware = datetime.now(timezone.utc)
+            days_remaining = (goal_achieve_by - today_aware).days
+            easy_date = goal_achieve_by.strftime('%d/%m/%y')
+            if days_remaining < -1:
+                return f'Your Goal is Overdue!!! {easy_date}'
+            elif days_remaining < 3:
+                today = date.today()
+                today_day = today.day
+                achieve_by_day = goal_achieve_by.day
+                if today_day == achieve_by_day:
+                    return f'User Goal due Tomorrow {easy_date}'
                 else:
                     return f'Goal due {easy_date}'
             else:
-                return None
+                return f'Goal due {easy_date}'
         else:
             return None
 
