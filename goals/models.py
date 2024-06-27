@@ -18,13 +18,6 @@ class UserGoals(models.Model):
         Refine,
         on_delete=models.CASCADE,
         related_name="goals_for_refine")
-    children  = models.BooleanField(default=False)
-    parent = models.ForeignKey(
-        'self',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        related_name='nested_usergoals')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)

@@ -67,7 +67,7 @@ ALLOWED_HOSTS = [
     #'testserver',
     'localhost',
     '.herokuapp.com',
-    
+    "8000-greenninjab-forgefocusa-w3555jdghvn.ws-eu114.gitpod.io"
 
                 ]
 
