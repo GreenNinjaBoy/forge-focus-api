@@ -29,7 +29,7 @@ class UserGoalsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserGoals
         fields = [
-            'id', 'owner', 'is_owner', 'refine', 'children', 'parent',
+            'id', 'owner', 'is_owner', 'refine',
             'created_at', 'updated_at', 'active', 'achieve_by', 'goal_title',
             'goal_details', 'criteria', 'achieve_by_near', 'time_remaining',
         ]
